@@ -1,0 +1,50 @@
+{
+  "common": {
+    "welcome": "સ્વાગત છે",
+    "settings": "સેટિંગ્સ",
+    "language": "ભાષા",
+    "or": "અથવા",
+    "continueWith": "સાથે ચાલુ રાખો"
+  },
+  "auth": {
+    "signIn": "સાઇન ઇન",
+    "signUp": "સાઇન અપ",
+    "createAccount": "એકાઉન્ટ બનાવો",
+    "joinUs": "અન્ય લોકો સાથે જોડાવા માટે અમારી સાથે જોડાઓ",
+    "username": "યુઝરનેઇમ",
+    "enterUsername": "યુઝરનેઇમ દાખલ કરો",
+    "name": "નામ",
+    "enterName": "તમારું નામ દાખલ કરો",
+    "email": "ઇમેઇલ",
+    "enterEmail": "ઇમેઇલ એડ્રેસ દાખલ કરો",
+    "phone": "ફોન",
+    "enterPhone": "ફોન નંબર દાખલ કરો",
+    "password": "પાસવર્ડ",
+    "enterPassword": "પાસવર્ડ દાખલ કરો",
+    "confirmPassword": "પાસવર્ડની પુષ્ટિ કરો",
+    "confirmPasswordPlaceholder": "પાસવર્ડની પુષ્ટિ કરો",
+    "forgotPassword": "પાસવર્ડ ભૂલી ગયા છો?",
+    "dontHaveAccount": "એકાઉન્ટ નથી?",
+    "alreadyHaveAccount": "પહેલેથી એકાઉન્ટ છે?",
+    "logIn": "લોગ ઇન",
+    "sendotp": "OTP મેળવો",
+    "enterOTP": "OTP દાખલ કરો",
+    "otpDescription": "અમે તમારા ઇમેઇલ પર એક વેરિફિકેશન કોડ મોકલ્યો છે",
+    "verify": "ચકાસો",
+    "otpVerified": "OTP ચકાસાયેલ",
+    "otpVerifiedDesc": "તમારો OTP સફળતાપૂર્વક ચકાસાયેલ છે",
+    "verificationFailed": "ચકાસણી નિષ્ફળ",
+    "invalidOTP": "માન્ય 6-અંકનો OTP દાખલ કરો",
+    "resendOTP": "OTP ફરીથી મોકલો",
+    "otpResent": "OTP ફરીથી મોકલાયેલ",
+    "otpResentDesc": "તમારા ઇમેઇલ પર નવો OTP મોકલાયેલ છે",
+    "resendFailed": "OTP ફરીથી મોકલવામાં નિષ્ફળ"
+  },
+  "onboarding": {
+    "appName": "ConnectVibe",
+    "subtitle": "વિડિઓ કોલ અને ચેટ સરળ બનાવ્યા",
+    "stayConnected": "ક્યાંય પણ જોડાયેલા રહો",
+    "featureDesc": "ઉચ્ચ-ગુણવત્તાની વિડિઓ કોલ, ત્વરિત મેસેજિંગ અને મિત્રો અને પરિવાર સાથે સરળ સંવાદ.",
+    "getStarted": "શરૂ કરો"
+  }
+} 

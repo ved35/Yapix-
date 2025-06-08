@@ -1,34 +1,57 @@
 {
   "expo": {
-    "name": "Vibe",
-    "slug": "Vibe",
+    "name": "Yapix",
+    "slug": "Yapix",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "vibe",
+    "icon": "./assets/images/app_icon.png",
+    "scheme": "yapix",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.Yapix",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app needs access to the camera to take photos and videos.",
+        "NSPhotoLibraryUsageDescription": "This app needs access to photos to let you share them with your friends.",
+        "NSPhotoLibraryAddUsageDescription": "This app needs access to save photos to your photo library.",
+        "NSMicrophoneUsageDescription": "This app needs access to the microphone to record audio.",
+        "NSNotificationsUsageDescription": "This app needs to send you notifications about updates and new content.",
+        "NSDocumentsFolderUsageDescription": "This app needs access to documents to save and read files."
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/app_icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.Vibe",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "RECORD_AUDIO",
+        "MODIFY_AUDIO_SETTINGS",
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "POST_NOTIFICATIONS",
+        "READ_MEDIA_IMAGES",
+        "READ_MEDIA_VIDEO",
+        "READ_MEDIA_AUDIO"
+      ]
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/logo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
@@ -37,6 +60,44 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "fonts": [
+      {
+        "asset": "./assets/fonts/Montserrat-Regular.ttf",
+        "family": "Montserrat-Regular"
+      },
+      {
+        "asset": "./assets/fonts/Montserrat-Medium.ttf",
+        "family": "Montserrat-Medium"
+      },
+      {
+        "asset": "./assets/fonts/Montserrat-Light.ttf",
+        "family": "Montserrat-Light"
+      },
+      {
+        "asset": "./assets/fonts/Montserrat-Thin.ttf",
+        "family": "Montserrat-Thin"
+      },
+      {
+        "asset": "./assets/fonts/Montserrat-ExtraLight.ttf",
+        "family": "Montserrat-ExtraLight"
+      },
+      {
+        "asset": "./assets/fonts/Montserrat-SemiBold.ttf",
+        "family": "Montserrat-SemiBold"
+      },
+      {
+        "asset": "./assets/fonts/Montserrat-Bold.ttf",
+        "family": "Montserrat-Bold"
+      },
+      {
+        "asset": "./assets/fonts/Montserrat-ExtraBold.ttf",
+        "family": "Montserrat-ExtraBold"
+      },
+      {
+        "asset": "./assets/fonts/Montserrat-Black.ttf",
+        "family": "Montserrat-Black"
+      }
+    ]
   }
 }
