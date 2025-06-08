@@ -1,8 +1,16 @@
-import { FONTS } from '@/constants/theme';
-import { useTheme } from '@/context/ThemeContext';
-import { MaterialIcons } from '@expo/vector-icons';
-import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TextInputProps, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { FONTS } from "@/constants/theme";
+import { useTheme } from "@/context/ThemeContext";
+import { MaterialIcons } from "@expo/vector-icons";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TextInputProps,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 
 interface CustomTextInputProps extends TextInputProps {
   label?: string;
@@ -33,11 +41,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
       )}
       <View style={styles.inputWrapper}>
         <TextInput
-          style={[
-            styles.input,
-            error && styles.inputError,
-            style
-          ]}
+          style={[styles.input, error && styles.inputError, style]}
           placeholderTextColor={colors.gray}
           secureTextEntry={password && !showPassword}
           allowFontScaling={false}
@@ -50,7 +54,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <MaterialIcons
-              name={showPassword ? 'visibility' : 'visibility-off'}
+              name={showPassword ? "visibility" : "visibility-off"}
               size={20}
               color={colors.gray}
             />
@@ -69,7 +73,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
 const getStyles = (colors: any) =>
   StyleSheet.create({
     container: {
-      width: '100%',
+      width: "100%",
       marginBottom: 0,
     },
     label: {
@@ -80,12 +84,12 @@ const getStyles = (colors: any) =>
       marginTop: 12,
     },
     inputWrapper: {
-      position: 'relative',
-      flexDirection: 'row',
-      alignItems: 'center',
+      position: "relative",
+      flexDirection: "row",
+      alignItems: "center",
     },
     input: {
-      width: '100%',
+      width: "100%",
       height: 50,
       borderColor: colors.lightGray,
       borderWidth: 1,
@@ -100,7 +104,7 @@ const getStyles = (colors: any) =>
       borderColor: colors.red,
     },
     eyeIcon: {
-      position: 'absolute',
+      position: "absolute",
       right: 12,
       top: 15,
     },
@@ -112,4 +116,4 @@ const getStyles = (colors: any) =>
     },
   });
 
-export default CustomTextInput; 
+export default CustomTextInput;

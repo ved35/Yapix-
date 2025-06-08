@@ -1,144 +1,144 @@
-import CustomButton from '@/components/CustomButton';
-import CustomText from '@/components/CustomText';
-import CustomTextInput from '@/components/CustomTextInput';
-import { FONTS } from '@/constants/theme';
-import { useTheme } from '@/context/ThemeContext';
-import { resetPasswordSchema, type ResetPasswordFormData } from '@/validation/auth.schema';
-import { router } from 'expo-router';
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
-import { ZodError } from 'zod';
+import CustomButton from "@/components/CustomButton";
+import CustomText from "@/components/CustomText";
+import CustomTextInput from "@/components/CustomTextInput";
+import { FONTS } from "@/constants/theme";
+import { useTheme } from "@/context/ThemeContext";
+import { resetPasswordSchema, type ResetPasswordFormData } from "@/validation/auth.schema";
+import { router } from "expo-router";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
+import { ZodError } from "zod";
 
 const ForgotPassword = () => {
-    const styles = style();
-    const { t } = useTranslation();
-    const { colors } = useTheme();
+  const styles = style();
+  const { t } = useTranslation();
+  const { colors } = useTheme();
 
-    const [formData, setFormData] = useState<ResetPasswordFormData>({
-        password: '',
-        confirmPassword: '',
-    });
+  const [formData, setFormData] = useState<ResetPasswordFormData>({
+    password: "",
+    confirmPassword: "",
+  });
 
-    const [errors, setErrors] = useState<Partial<Record<keyof ResetPasswordFormData, string>>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof ResetPasswordFormData, string>>>({});
 
-    const handleChange = (key: keyof ResetPasswordFormData, value: string) => {
-        setFormData(prev => ({ ...prev, [key]: value }));
-        // Clear error when user starts typing
-        if (errors[key]) {
-            setErrors(prev => ({ ...prev, [key]: undefined }));
-        }
-    };
+  const handleChange = (key: keyof ResetPasswordFormData, value: string) => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
+    // Clear error when user starts typing
+    if (errors[key]) {
+      setErrors((prev) => ({ ...prev, [key]: undefined }));
+    }
+  };
 
-    const validateForm = () => {
-        try {
-            resetPasswordSchema.parse(formData);
-            setErrors({});
-            return true;
-        } catch (error) {
-            if (error instanceof ZodError) {
-                const newErrors: Partial<Record<keyof ResetPasswordFormData, string>> = {};
-                error.errors.forEach((err) => {
-                    const path = err.path[0] as keyof ResetPasswordFormData;
-                    newErrors[path] = err.message;
-                });
-                setErrors(newErrors);
-            }
-            return false;
-        }
-    };
+  const validateForm = () => {
+    try {
+      resetPasswordSchema.parse(formData);
+      setErrors({});
+      return true;
+    } catch (error) {
+      if (error instanceof ZodError) {
+        const newErrors: Partial<Record<keyof ResetPasswordFormData, string>> = {};
+        error.errors.forEach((err) => {
+          const path = err.path[0] as keyof ResetPasswordFormData;
+          newErrors[path] = err.message;
+        });
+        setErrors(newErrors);
+      }
+      return false;
+    }
+  };
 
-    const handleResetPassword = () => {
-        if (validateForm()) {
-            // TODO: Implement password reset logic here
-            router.push('/(auth)/sign-in');
-        }
-    };
+  const handleResetPassword = () => {
+    if (validateForm()) {
+      // TODO: Implement password reset logic here
+      router.push("/(auth)/sign-in");
+    }
+  };
 
-    return (
-        <KeyboardAvoidingView
-            style={{ flex: 1 }}
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 110}
-        >
-            <View style={styles.container}>
-                <View style={styles.content}>
-                    <CustomText style={styles.subtitle}>{t('auth.resetPasswordDesc')}</CustomText>
-                    
-                    <View style={styles.inputContainer}>
-                        <CustomTextInput
-                            label={t('auth.newPassword')}
-                            placeholder={t('auth.enterNewPassword')}
-                            value={formData.password}
-                            onChangeText={value => handleChange('password', value)}
-                            password
-                            error={errors.password}
-                        />
-                        <CustomTextInput
-                            label={t('auth.confirmPassword')}
-                            placeholder={t('auth.confirmPasswordPlaceholder')}
-                            value={formData.confirmPassword}
-                            onChangeText={value => handleChange('confirmPassword', value)}
-                            password
-                            error={errors.confirmPassword}
-                        />
-                    </View>
-                    <View style={{ flex: 1 }} />
+  return (
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 110}
+    >
+      <View style={styles.container}>
+        <View style={styles.content}>
+          <CustomText style={styles.subtitle}>{t("auth.resetPasswordDesc")}</CustomText>
 
-                    <CustomButton
-                        text={t('auth.resetPassword')}
-                        onPress={handleResetPassword}
-                        style={styles.button}
-                        textStyle={styles.buttonText}
-                    />
-                </View>
-            </View>
-        </KeyboardAvoidingView>
-    );
+          <View style={styles.inputContainer}>
+            <CustomTextInput
+              label={t("auth.newPassword")}
+              placeholder={t("auth.enterNewPassword")}
+              value={formData.password}
+              onChangeText={(value) => handleChange("password", value)}
+              password
+              error={errors.password}
+            />
+            <CustomTextInput
+              label={t("auth.confirmPassword")}
+              placeholder={t("auth.confirmPasswordPlaceholder")}
+              value={formData.confirmPassword}
+              onChangeText={(value) => handleChange("confirmPassword", value)}
+              password
+              error={errors.confirmPassword}
+            />
+          </View>
+          <View style={{ flex: 1 }} />
+
+          <CustomButton
+            text={t("auth.resetPassword")}
+            onPress={handleResetPassword}
+            style={styles.button}
+            textStyle={styles.buttonText}
+          />
+        </View>
+      </View>
+    </KeyboardAvoidingView>
+  );
 };
 
 export default ForgotPassword;
 
 const style = () => {
-    const { colors } = useTheme();
-    return StyleSheet.create({
-        container: {
-            flex: 1,
-            backgroundColor: colors.white,
-        },
-        content: {
-            flex: 1,
-            padding: 20,
-        },
-        title: {
-            fontSize: 24,
-            fontFamily: FONTS.bold,
-            textAlign: 'center',
-            marginBottom: 8,
-            color: colors.black,
-        },
-        subtitle: {
-            fontSize: 14,
-            color: colors.gray,
-            fontFamily: FONTS.medium,
-            textAlign: 'center',
-            marginBottom: 32,
-        },
-        inputContainer: {
-            width: '100%',
-            marginBottom: 24,
-        },
-        button: {
-            width: '100%',
-            backgroundColor: colors.primary,
-            borderRadius: 10,
-            paddingVertical: 14,
-            alignItems: 'center',
-        },
-        buttonText: {
-            color: colors.white,
-            fontSize: 16,
-            fontFamily: FONTS.bold,
-        },
-    });
+  const { colors } = useTheme();
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: colors.white,
+    },
+    content: {
+      flex: 1,
+      padding: 20,
+    },
+    title: {
+      fontSize: 24,
+      fontFamily: FONTS.bold,
+      textAlign: "center",
+      marginBottom: 8,
+      color: colors.black,
+    },
+    subtitle: {
+      fontSize: 14,
+      color: colors.gray,
+      fontFamily: FONTS.medium,
+      textAlign: "center",
+      marginBottom: 32,
+    },
+    inputContainer: {
+      width: "100%",
+      marginBottom: 24,
+    },
+    button: {
+      width: "100%",
+      backgroundColor: colors.primary,
+      borderRadius: 10,
+      paddingVertical: 14,
+      alignItems: "center",
+    },
+    buttonText: {
+      color: colors.white,
+      fontSize: 16,
+      fontFamily: FONTS.bold,
+    },
+  });
 };

@@ -1,33 +1,37 @@
-import Storage from '@/hooks/Storage';
-import { LoginCredentials, NewPasswordData, PasswordResetData, RegisterData } from '@/interface/type';
-import { showMessage } from 'react-native-flash-message';
-import api from '../axios';
+import Storage from "@/hooks/Storage";
+import {
+  LoginCredentials,
+  NewPasswordData,
+  PasswordResetData,
+  RegisterData,
+} from "@/interface/type";
+import { showMessage } from "react-native-flash-message";
+import api from "../axios";
 
 const handleSuccess = (response: any) => {
   showMessage({
-    type: 'success',
-    message: 'success',
+    type: "success",
+    message: "success",
     description: response?.data?.message || response?.message,
   });
   return response.data;
-}
+};
 
 const handleError = (error: any) => {
   showMessage({
-    type: 'danger',
-    message: 'Fail',
+    type: "danger",
+    message: "Fail",
     description: error.response?.data?.message || error.message,
   });
   return error;
-}
-
+};
 
 // Authentication API functions
 export const authApiService = {
   // Login user
   login: async (credentials: LoginCredentials) => {
     try {
-      const response = await api.post('/auth/login', credentials);
+      const response = await api.post("/auth/login", credentials);
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);
@@ -37,7 +41,7 @@ export const authApiService = {
   // Register new user
   register: async (userData: RegisterData) => {
     try {
-      const response = await api.post('/auth/register', userData);
+      const response = await api.post("/auth/register", userData);
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);
@@ -47,8 +51,8 @@ export const authApiService = {
   // Logout user
   logout: async () => {
     try {
-      const response = await api.post('/auth/logout');
-      Storage.removeItem('token');
+      const response = await api.post("/auth/logout");
+      Storage.removeItem("token");
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);
@@ -58,7 +62,7 @@ export const authApiService = {
   // Get current user profile
   getCurrentUser: async () => {
     try {
-      const response = await api.get('/auth/me');
+      const response = await api.get("/auth/me");
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);
@@ -68,7 +72,7 @@ export const authApiService = {
   // Request password reset
   requestPasswordReset: async (data: PasswordResetData) => {
     try {
-      const response = await api.post('/auth/forgot-password', data);
+      const response = await api.post("/auth/forgot-password", data);
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);
@@ -78,7 +82,7 @@ export const authApiService = {
   // Reset password with token
   resetPassword: async (data: NewPasswordData) => {
     try {
-      const response = await api.post('/auth/reset-password', data);
+      const response = await api.post("/auth/reset-password", data);
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);
@@ -88,7 +92,7 @@ export const authApiService = {
   // Refresh access token
   refreshToken: async () => {
     try {
-      const response = await api.post('/auth/refresh-token');
+      const response = await api.post("/auth/refresh-token");
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);
@@ -98,7 +102,7 @@ export const authApiService = {
   // Verify email
   verifyEmail: async (token: string) => {
     try {
-      const response = await api.post('/auth/verify-email', { token });
+      const response = await api.post("/auth/verify-email", { token });
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);
@@ -108,7 +112,7 @@ export const authApiService = {
   // Resend verification email
   resendVerificationEmail: async (email: string) => {
     try {
-      const response = await api.post('/auth/resend-verification', { email });
+      const response = await api.post("/auth/resend-verification", { email });
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);
@@ -118,7 +122,7 @@ export const authApiService = {
   // Update user profile
   updateProfile: async (userData: Partial<RegisterData>) => {
     try {
-      const response = await api.put('/auth/profile', userData);
+      const response = await api.put("/auth/profile", userData);
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);
@@ -128,7 +132,7 @@ export const authApiService = {
   // Change password
   changePassword: async (oldPassword: string, newPassword: string) => {
     try {
-      const response = await api.post('/auth/change-password', { oldPassword, newPassword });
+      const response = await api.post("/auth/change-password", { oldPassword, newPassword });
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);
@@ -138,7 +142,7 @@ export const authApiService = {
   // Verify OTP
   verifyOTP: async (otp: string) => {
     try {
-      const response = await api.post('/auth/verify-otp', { otp });
+      const response = await api.post("/auth/verify-otp", { otp });
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);

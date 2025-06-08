@@ -1,6 +1,6 @@
-import { AuthState } from '@/interface/type';
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { AuthState } from "@/interface/type";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 const useAuthStore = create<AuthState>()(
   persist(
@@ -9,9 +9,9 @@ const useAuthStore = create<AuthState>()(
       token: null,
     }),
     {
-      name: 'auth-storage',
+      name: "auth-storage",
     }
   )
 );
 
-export default useAuthStore; 
+export default useAuthStore;

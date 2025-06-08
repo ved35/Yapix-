@@ -1,15 +1,15 @@
-import { Images } from '@/assets/assets';
-import CustomButton from '@/components/CustomButton';
-import CustomText from '@/components/CustomText';
-import GoogleSignInButton from '@/components/GoogleSignInButton';
-import GradientView from '@/components/GradientView';
-import { FONTS } from '@/constants/theme';
-import { useTheme } from '@/context/ThemeContext';
-import { MaterialIcons } from '@expo/vector-icons';
-import { router } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Images } from "@/assets/assets";
+import CustomButton from "@/components/CustomButton";
+import CustomText from "@/components/CustomText";
+import GoogleSignInButton from "@/components/GoogleSignInButton";
+import GradientView from "@/components/GradientView";
+import { FONTS } from "@/constants/theme";
+import { useTheme } from "@/context/ThemeContext";
+import { MaterialIcons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
 
 // Keep the splash screen visible while we fetch resources
@@ -25,8 +25,8 @@ const GetStarted = () => {
 
   return (
     <View onLayout={onLayoutRootView} style={styles.container}>
-      <GradientView colors={["#EDF2FF", "#E7F9F4"]} style={styles.gradient} >
-        <ScrollView 
+      <GradientView colors={["#EDF2FF", "#E7F9F4"]} style={styles.gradient}>
+        <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
           bounces={false}
@@ -36,8 +36,8 @@ const GetStarted = () => {
             <View style={styles.logoBg}>
               <MaterialIcons name="videocam" size={40} color="#fff" />
             </View>
-            <CustomText style={styles.appName}>{t('onboarding.appName')}</CustomText>
-            <CustomText style={styles.subtitle}>{t('onboarding.subtitle')}</CustomText>
+            <CustomText style={styles.appName}>{t("onboarding.appName")}</CustomText>
+            <CustomText style={styles.subtitle}>{t("onboarding.subtitle")}</CustomText>
           </View>
 
           {/* Illustration */}
@@ -47,36 +47,37 @@ const GetStarted = () => {
 
           {/* Feature Text */}
           <View style={styles.featureContainer}>
-            <CustomText style={styles.featureTitle}>{t('onboarding.stayConnected')}</CustomText>
-            <CustomText style={styles.featureDesc}>
-              {t('onboarding.featureDesc')}
-            </CustomText>
+            <CustomText style={styles.featureTitle}>{t("onboarding.stayConnected")}</CustomText>
+            <CustomText style={styles.featureDesc}>{t("onboarding.featureDesc")}</CustomText>
           </View>
 
           {/* Buttons */}
           <View style={styles.buttonContainer}>
-            <CustomButton 
-              text={t('onboarding.getStarted')}
-              onPress={() => {router.navigate('/(auth)/sign-up')}}
+            <CustomButton
+              text={t("onboarding.getStarted")}
+              onPress={() => {
+                router.navigate("/(auth)/sign-up");
+              }}
               variant="filled"
             />
-            <CustomButton 
-              text={t('auth.signIn')}
-              onPress={() => {router.navigate('/(auth)/sign-in')}}
+            <CustomButton
+              text={t("auth.signIn")}
+              onPress={() => {
+                router.navigate("/(auth)/sign-in");
+              }}
               variant="outlined"
             />
-            <CustomText style={styles.orText}>{t('common.continueWith')}</CustomText>
+            <CustomText style={styles.orText}>{t("common.continueWith")}</CustomText>
             <GoogleSignInButton />
           </View>
         </ScrollView>
       </GradientView>
     </View>
   );
-}
+};
 
 const style = () => {
-
-  const {colors} = useTheme();
+  const { colors } = useTheme();
 
   return StyleSheet.create({
     container: {
@@ -87,12 +88,12 @@ const style = () => {
     },
     scrollContent: {
       flexGrow: 1,
-      justifyContent: 'space-between',
-      alignItems: 'center',
+      justifyContent: "space-between",
+      alignItems: "center",
       paddingVertical: 40,
     },
     logoContainer: {
-      alignItems: 'center',
+      alignItems: "center",
       marginTop: 40,
     },
     logoBg: {
@@ -114,14 +115,14 @@ const style = () => {
       marginBottom: 5,
     },
     illustrationContainer: {
-      alignItems: 'center',
+      alignItems: "center",
     },
     illustration: {
       width: 200,
       height: 200,
     },
     featureContainer: {
-      alignItems: 'center',
+      alignItems: "center",
       marginVertical: 5,
       paddingHorizontal: 24,
     },
@@ -135,11 +136,11 @@ const style = () => {
       fontSize: 15,
       fontFamily: FONTS.regular,
       color: colors.gray,
-      textAlign: 'center',
+      textAlign: "center",
     },
     buttonContainer: {
-      width: '100%',
-      alignItems: 'center',
+      width: "100%",
+      alignItems: "center",
       marginTop: 10,
     },
     orText: {
@@ -149,5 +150,5 @@ const style = () => {
       marginVertical: 8,
     },
   });
-}
+};
 export default GetStarted;

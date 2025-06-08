@@ -1,29 +1,29 @@
-import CustomText from '@/components/CustomText';
-import { FONTS } from '@/constants/theme';
-import { useTheme } from '@/context/ThemeContext';
-import { Ionicons } from '@expo/vector-icons';
+import CustomText from "@/components/CustomText";
+import { FONTS } from "@/constants/theme";
+import { useTheme } from "@/context/ThemeContext";
+import { Ionicons } from "@expo/vector-icons";
 import { Stack, router } from "expo-router";
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from "react-native";
 
 export default function AuthLayout() {
-    const styles = style();
+  const styles = style();
 
   return (
-    <Stack 
+    <Stack
       screenOptions={{
         headerShown: true,
-        animation: 'slide_from_right',
-        presentation: 'card',
+        animation: "slide_from_right",
+        presentation: "card",
         gestureEnabled: true,
-        gestureDirection: 'horizontal',
+        gestureDirection: "horizontal",
         contentStyle: styles.content,
         headerStyle: styles.header,
         headerTitleStyle: styles.headerTitle,
-        headerTitleAlign: 'center',
+        headerTitleAlign: "center",
         headerShadowVisible: false,
         headerLeft: () => (
-          <Pressable 
-            onPress={() => router.back()} 
+          <Pressable
+            onPress={() => router.back()}
             style={styles.backButton}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
@@ -32,60 +32,57 @@ export default function AuthLayout() {
         ),
       }}
     >
-      <Stack.Screen 
-        name="sign-up" 
-        options={{ 
-          title: 'Create an account',
+      <Stack.Screen
+        name="sign-up"
+        options={{
+          title: "Create an account",
           headerTitle: () => (
             <CustomText style={styles.headerTitle} numberOfLines={1}>
               Create an account
             </CustomText>
           ),
-        }} 
+        }}
       />
-      <Stack.Screen 
-        name="sign-in" 
-        options={{ headerShown: false }} 
-      />
-      <Stack.Screen 
-        name="forgot-password" 
-        options={{ 
-          title: 'Forgot Password',
+      <Stack.Screen name="sign-in" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="forgot-password"
+        options={{
+          title: "Forgot Password",
           headerTitle: () => (
             <CustomText style={styles.headerTitle} numberOfLines={1}>
               Forgot Password
             </CustomText>
           ),
-        }} 
+        }}
       />
-      <Stack.Screen 
-        name="enter-email" 
-        options={{ 
-          title: 'Enter Email',
+      <Stack.Screen
+        name="enter-email"
+        options={{
+          title: "Enter Email",
           headerTitle: () => (
             <CustomText style={styles.headerTitle} numberOfLines={1}>
               Enter Email
             </CustomText>
           ),
-        }} 
+        }}
       />
-      <Stack.Screen 
-        name="verify-otp" 
-        options={{ 
-          title: 'Verify OTP',
+      <Stack.Screen
+        name="verify-otp"
+        options={{
+          title: "Verify OTP",
           headerTitle: () => (
             <CustomText style={styles.headerTitle} numberOfLines={1}>
               Verify OTP
             </CustomText>
           ),
-        }} 
+        }}
       />
     </Stack>
   );
 }
 
 const style = () => {
-    const {colors} = useTheme();
+  const { colors } = useTheme();
   return StyleSheet.create({
     container: {
       flex: 1,
@@ -109,8 +106,8 @@ const style = () => {
       padding: 8,
       backgroundColor: colors.lightGray,
       borderRadius: 40,
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: "center",
+      alignItems: "center",
     },
   });
-}
+};

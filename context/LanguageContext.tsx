@@ -1,7 +1,7 @@
-import { LanguageContextType } from '@/interface/type';
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { MMKV } from 'react-native-mmkv';
+import { LanguageContextType } from "@/interface/type";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { MMKV } from "react-native-mmkv";
 
 const storage = new MMKV();
 
@@ -14,11 +14,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
     setLanguage(lang);
-    storage.set('language', lang);
+    storage.set("language", lang);
   };
 
   useEffect(() => {
-    const savedLanguage = storage.getString('language');
+    const savedLanguage = storage.getString("language");
     if (savedLanguage) {
       changeLanguage(savedLanguage);
     }
@@ -34,7 +34,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
-}; 
+};
