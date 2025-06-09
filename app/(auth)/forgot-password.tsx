@@ -3,6 +3,7 @@ import CustomText from "@/components/CustomText";
 import CustomTextInput from "@/components/CustomTextInput";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
+import { useResetPassword } from "@/hooks/useResetPassword";
 import { resetPasswordSchema, type ResetPasswordFormData } from "@/validation/auth.schema";
 import { router } from "expo-router";
 import React, { useState } from "react";
@@ -14,6 +15,7 @@ const ForgotPassword = () => {
   const styles = style();
   const { t } = useTranslation();
   const { colors } = useTheme();
+  const resetPasswordMutation = useResetPassword();
 
   const [formData, setFormData] = useState<ResetPasswordFormData>({
     password: "",
@@ -48,10 +50,18 @@ const ForgotPassword = () => {
     }
   };
 
-  const handleResetPassword = () => {
+  const handleResetPassword = async () => {
     if (validateForm()) {
-      // TODO: Implement password reset logic here
-      router.push("/(auth)/sign-in");
+      try {
+        const res = await resetPasswordMutation.mutateAsync({
+          password: formData.password,
+        });
+        if (res?.success) {
+          router.push("/(auth)/sign-in");
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
     }
   };
 
@@ -90,6 +100,7 @@ const ForgotPassword = () => {
             onPress={handleResetPassword}
             style={styles.button}
             textStyle={styles.buttonText}
+            loading={resetPasswordMutation.isPending}
           />
         </View>
       </View>

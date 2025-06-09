@@ -62,11 +62,18 @@ const SignIn = () => {
   const handleSignIn = async () => {
     if (validateForm()) {
       let data = {
-        username: formData.username,
+        identity: formData.username,
         password: formData.password,
       };
-      const res = await loginMutation.mutateAsync(data);
-      console.log(res);
+      try {
+        const res = await loginMutation.mutateAsync(data);
+        if (res?.success) {
+          router.replace("/(tabs)");
+        }
+        console.log(res);
+      } catch (error) {
+        console.log("error", error);
+      }
     }
   };
 

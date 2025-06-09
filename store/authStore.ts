@@ -7,6 +7,8 @@ const useAuthStore = create<AuthState>()(
     (set) => ({
       user: null,
       token: null,
+
+      setUser: (user) => set({ user }),
     }),
     {
       name: "auth-storage",

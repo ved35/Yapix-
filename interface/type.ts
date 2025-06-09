@@ -5,7 +5,7 @@ import { colors } from "../constants/theme";
 
 // Auth related interfaces
 export interface LoginCredentials {
-  username: string;
+  identity: string;
   password: string;
 }
 
@@ -44,6 +44,8 @@ export interface User {
 export interface AuthState {
   user: User | null;
   token: string | null;
+
+  setUser: (user: User | null) => void;
 }
 
 // Flash Message interface

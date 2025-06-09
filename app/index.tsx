@@ -7,24 +7,15 @@ import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
-
-// Keep the splash screen visible while we fetch resources
-SplashScreen.preventAutoHideAsync();
 
 const GetStarted = () => {
   const styles = style();
   const { t } = useTranslation();
 
-  const onLayoutRootView = useCallback(async () => {
-    await SplashScreen.hideAsync();
-  }, []);
-
   return (
-    <View onLayout={onLayoutRootView} style={styles.container}>
+    <View style={styles.container}>
       <GradientView colors={["#EDF2FF", "#E7F9F4"]} style={styles.gradient}>
         <ScrollView
           contentContainerStyle={styles.scrollContent}

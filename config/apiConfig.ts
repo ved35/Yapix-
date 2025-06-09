@@ -1,5 +1,5 @@
 export const apiConfig = {
-  BASE_URL: "http://localhost:3000",
+  BASE_URL: "https://echomeet-3wyb.onrender.com",
   LIVE_URL: "https://api.example.com",
 
   // Request configuration
@@ -10,8 +10,12 @@ export const apiConfig = {
   ENDPOINTS: {
     AUTH: {
       LOGIN: "/auth/login",
-      REGISTER: "/auth/register",
+      SIGNUP: "/auth/signup",
       LOGOUT: "/auth/logout",
+      RESET_PASSWORD: "/auth/resetPassword",
+      VERIFY_OTP: "/auth/verify-otp",
+      SEND_FORGOT_PASSWORD_OTP: "/auth/sendForgotPasswordOtp",
+      GOOGLE_LOGIN: "/auth/googleLogin",
     },
     USER: {
       PROFILE: "/user/profile",

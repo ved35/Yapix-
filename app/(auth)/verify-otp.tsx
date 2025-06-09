@@ -3,7 +3,7 @@ import CustomText from "@/components/CustomText";
 import OTPInput from "@/components/OTPInput";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
-import authApiService from "@/services/authApi/api";
+import { useVerifyOTPMutation } from "@/hooks/mutations/authMutations";
 import { otpSchema } from "@/validation/auth.schema";
 import { router } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
@@ -17,13 +17,13 @@ const VerifyOTP = () => {
   const { t } = useTranslation();
   const { colors } = useTheme();
   const styles = style();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
   const [countdown, setCountdown] = useState(COUNTDOWN_DURATION);
   const [isResending, setIsResending] = useState(false);
   const appState = useRef(AppState.currentState);
   const lastActiveTime = useRef(Date.now());
+  const verifyOTPMutation = useVerifyOTPMutation();
 
   // Handle app state changes (background/foreground)
   useEffect(() => {
@@ -81,7 +81,7 @@ const VerifyOTP = () => {
       setIsResending(true);
       // Since resendOTP is not available in the service, we'll use the same endpoint as verifyOTP
       // but with a different parameter to indicate it's a resend request
-      await authApiService.verifyOTP("resend");
+      await verifyOTPMutation.mutateAsync("resend");
       setCountdown(COUNTDOWN_DURATION);
       showMessage({
         type: "success",
@@ -105,24 +105,12 @@ const VerifyOTP = () => {
     }
 
     try {
-      setIsSubmitting(true);
-      const response = await authApiService.verifyOTP(otp);
-      if (response) {
-        showMessage({
-          type: "success",
-          message: t("auth.otpVerified"),
-          description: t("auth.otpVerifiedDesc"),
-        });
+      const response = await verifyOTPMutation.mutateAsync(otp);
+      if (response?.success) {
         router.push("/(auth)/forgot-password");
       }
     } catch (error: any) {
-      showMessage({
-        type: "danger",
-        message: t("auth.verificationFailed"),
-        description: error.response?.data?.message || error.message,
-      });
-    } finally {
-      setIsSubmitting(false);
+      console.log("error", error);
     }
   };
 
@@ -159,7 +147,8 @@ const VerifyOTP = () => {
         onPress={handleVerifyOTP}
         style={styles.button}
         textStyle={styles.buttonText}
-        disabled={isSubmitting || otp.length !== 6}
+        disabled={verifyOTPMutation.isPending || otp.length !== 6}
+        loading={verifyOTPMutation.isPending}
       />
     </View>
   );

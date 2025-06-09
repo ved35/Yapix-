@@ -62,10 +62,21 @@ const SignUp = () => {
         password: formData.password,
         username: formData.username,
         given_name: formData.name,
+        provider: "email",
       };
 
-      const res = await signupMutation.mutateAsync(data);
-      console.log(res);
+      console.log("data-->", JSON.stringify(data));
+
+      try {
+        const res = await signupMutation.mutateAsync(data);
+
+        console.log(res);
+        if (res?.success) {
+          router.navigate("/(auth)/verify-otp");
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
     }
   };
 
