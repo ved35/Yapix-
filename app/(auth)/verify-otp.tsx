@@ -3,9 +3,9 @@ import CustomText from "@/components/CustomText";
 import OTPInput from "@/components/OTPInput";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
-import { useVerifyOTPMutation } from "@/hooks/mutations/authMutations";
+import { useSendForgotPasswordOTPMutation, useVerifyOTPMutation } from "@/hooks/mutations/authMutations";
 import { otpSchema } from "@/validation/auth.schema";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AppState, StyleSheet, TouchableOpacity, View } from "react-native";
@@ -24,6 +24,9 @@ const VerifyOTP = () => {
   const appState = useRef(AppState.currentState);
   const lastActiveTime = useRef(Date.now());
   const verifyOTPMutation = useVerifyOTPMutation();
+  const sendForgotPasswordOTPMutation = useSendForgotPasswordOTPMutation();
+
+  const params = useLocalSearchParams();
 
   // Handle app state changes (background/foreground)
   useEffect(() => {
@@ -107,7 +110,11 @@ const VerifyOTP = () => {
     try {
       const response = await verifyOTPMutation.mutateAsync(otp);
       if (response?.success) {
-        router.push("/(auth)/forgot-password");
+        if(params.fromScreen === "forgot-password") {
+          router.push('/(auth)/sign-in');
+        } else {
+          router.push('/(tabs)/profile');
+        }
       }
     } catch (error: any) {
       console.log("error", error);

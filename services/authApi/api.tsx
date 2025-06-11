@@ -14,10 +14,11 @@ const handleSuccess = (response: any) => {
 };
 
 const handleError = (error: any) => {
+  console.log("error-->", error);
   showMessage({
     type: "danger",
     message: "Fail",
-    description: error.response?.data?.message || error.message || error,
+    description: error.response?.data?.Message || error?.data?.Message || error.Message || error,
   });
   return error;
 };

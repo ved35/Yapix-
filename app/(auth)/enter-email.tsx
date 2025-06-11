@@ -2,7 +2,7 @@ import CustomButton from "@/components/CustomButton";
 import CustomTextInput from "@/components/CustomTextInput";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
-import { useSendForgotPasswordOTP } from "@/hooks/useSendForgotPasswordOTP";
+import { useSendForgotPasswordOTPMutation } from "@/hooks/mutations/authMutations";
 import { SignUpFormData } from "@/validation/auth.schema";
 import { router } from "expo-router";
 import React, { useState } from "react";
@@ -17,7 +17,7 @@ const EnterEmail = () => {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState<Partial<Record<keyof SignUpFormData, string>>>({});
-  const sendForgotPasswordOTPMutation = useSendForgotPasswordOTP();
+  const sendForgotPasswordOTPMutation = useSendForgotPasswordOTPMutation();
 
   const validateEmail = (value: string) => {
     try {

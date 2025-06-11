@@ -59,7 +59,8 @@ const getStyles = () => {
   return StyleSheet.create({
     button: {
       borderRadius: 10,
-      paddingVertical: 14,
+      height: 50,
+      justifyContent: "center",
       width: 260,
       alignItems: "center",
       marginBottom: 12,

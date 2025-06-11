@@ -64,9 +64,7 @@ const SignUp = () => {
         given_name: formData.name,
         provider: "email",
       };
-
       console.log("data-->", JSON.stringify(data));
-
       try {
         const res = await signupMutation.mutateAsync(data);
 

@@ -61,9 +61,9 @@ axiosInstance.interceptors.response.use(
     return response?.data || response;
   },
   (error: AxiosError | any) => {
-    console.log("error", error);
     // Handle server response errors
     if (error?.response) {
+      console.log("error", error?.response);
       return {
         success: false,
         message: error.response.data?.message || "Server error occurred. Please try again.",

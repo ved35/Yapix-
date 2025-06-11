@@ -3,7 +3,7 @@ import CustomText from "@/components/CustomText";
 import CustomTextInput from "@/components/CustomTextInput";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
-import { useResetPassword } from "@/hooks/useResetPassword";
+import { useResetPasswordMutation } from "@/hooks/mutations/authMutations";
 import { resetPasswordSchema, type ResetPasswordFormData } from "@/validation/auth.schema";
 import { router } from "expo-router";
 import React, { useState } from "react";
@@ -15,7 +15,7 @@ const ForgotPassword = () => {
   const styles = style();
   const { t } = useTranslation();
   const { colors } = useTheme();
-  const resetPasswordMutation = useResetPassword();
+  const resetPasswordMutation = useResetPasswordMutation();
 
   const [formData, setFormData] = useState<ResetPasswordFormData>({
     password: "",
@@ -54,7 +54,7 @@ const ForgotPassword = () => {
     if (validateForm()) {
       try {
         const res = await resetPasswordMutation.mutateAsync({
-          password: formData.password,
+          password: String(formData.password),
         });
         if (res?.success) {
           router.push("/(auth)/sign-in");

@@ -85,15 +85,33 @@ export const useSendForgotPasswordOTPMutation = () => {
 };
 
 export const useResetPasswordMutation = () => {
+  const { setUser } = useAuthStore();
+
   return useMutation({
     mutationFn: (data: NewPasswordData) => authApiService.resetPassword(data),
     onSuccess: (data) => {
-      // Handle successful password reset
-      // You can add navigation logic here if needed
+      if (data?.token) {
+        Storage.setItem("token", data.token);
+        setUser(data.user);
+      }
     },
     onError: (error) => {
       // Error is already handled in the API service
       console.error("Reset password error:", error);
+    },
+  });
+};
+
+export const useForgotPasswordOTPMutation = () => {
+  return useMutation({
+    mutationFn: (email: string) => authApiService.sendForgotPasswordOTP(email),
+    onSuccess: (data) => {
+      // Success message is already handled in the API service
+      console.log("OTP sent successfully:", data);
+    },
+    onError: (error) => {
+      // Error is already handled in the API service
+      console.error("Send forgot password OTP error:", error);
     },
   });
 };

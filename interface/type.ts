@@ -30,7 +30,6 @@ export interface PasswordResetData {
 }
 
 export interface NewPasswordData {
-  token: string;
   password: string;
 }
 
