@@ -63,7 +63,6 @@ const getStyles = () => {
       justifyContent: "center",
       width: 260,
       alignItems: "center",
-      marginBottom: 12,
     },
     filledButton: {
       borderWidth: 0,

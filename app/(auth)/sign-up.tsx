@@ -61,16 +61,14 @@ const SignUp = () => {
         email: formData.email,
         password: formData.password,
         username: formData.username,
-        given_name: formData.name,
+        name: formData.name,
         provider: "email",
       };
-      console.log("data-->", JSON.stringify(data));
       try {
         const res = await signupMutation.mutateAsync(data);
-
-        console.log(res);
+        console.log("res-->", JSON.stringify(res));
         if (res?.success) {
-          router.navigate("/(auth)/verify-otp");
+          router.navigate({pathname: "/(auth)/verify-otp", params: {email: formData.email}});
         }
       } catch (error) {
         console.log("error", error);

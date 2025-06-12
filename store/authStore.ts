@@ -1,3 +1,4 @@
+import Storage from "@/hooks/Storage";
 import { AuthState } from "@/interface/type";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -12,6 +13,7 @@ const useAuthStore = create<AuthState>()(
     }),
     {
       name: "auth-storage",
+      storage: Storage
     }
   )
 );

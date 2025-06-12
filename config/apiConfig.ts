@@ -1,4 +1,6 @@
 export const apiConfig = {
+
+  //live
   BASE_URL: "https://echomeet-3wyb.onrender.com",
   LIVE_URL: "https://api.example.com",
 

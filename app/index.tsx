@@ -50,6 +50,7 @@ const GetStarted = () => {
                 router.navigate("/(auth)/sign-up");
               }}
               variant="filled"
+              style={{ marginBottom: 12 }}
             />
             <CustomButton
               text={t("auth.signIn")}

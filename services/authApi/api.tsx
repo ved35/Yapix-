@@ -1,36 +1,44 @@
 import { apiConfig } from "@/config/apiConfig";
 import Storage from "@/hooks/Storage";
-import { LoginCredentials, NewPasswordData, RegisterData } from "@/interface/type";
+import { LoginCredentials, NewPasswordData, RegisterData, VerifyOTPData } from "@/interface/type";
+import { AxiosResponse } from "axios";
 import { showMessage } from "react-native-flash-message";
 import api from "../axios";
 
-const handleSuccess = (response: any) => {
-  showMessage({
-    type: "success",
-    message: "success",
-    description: response?.data?.message || response?.message,
-  });
-  return response.data;
+const handleSuccess = (response: AxiosResponse["data"]) => {
+  console.log("response-1->", JSON.stringify(response));
+  if (response?.success || response?.data?.success) {
+    showMessage({
+      type: "success",
+      message: "success",
+      description: response?.data?.message || response?.message,
+    });
+  } else {
+    showMessage({
+      type: "danger",
+      message: "Fail",
+      description: response?.data?.message || response?.message,
+    });
+  }
+  return response;
 };
 
 const handleError = (error: any) => {
-  console.log("error-->", error);
+  const errorMessage = error instanceof Error ? error?.message : String(error);
+  console.log("errorMessage-->", errorMessage);
   showMessage({
     type: "danger",
     message: "Fail",
-    description: error.response?.data?.Message || error?.data?.Message || error.Message || error,
+    description: errorMessage,
   });
-  return error;
+  return errorMessage;
 };
 
 export const authApiService = {
   login: async (credentials: LoginCredentials) => {
     try {
       const response = (await api.post(apiConfig.ENDPOINTS.AUTH.LOGIN, credentials)) as any;
-      if (response?.success || response?.data?.success) {
-        return handleSuccess(response);
-      }
-      return handleError(response);
+      return handleSuccess(response);
     } catch (error) {
       return handleError(error);
     }
@@ -39,10 +47,7 @@ export const authApiService = {
   register: async (userData: RegisterData) => {
     try {
       const response = (await api.post(apiConfig.ENDPOINTS.AUTH.SIGNUP, userData)) as any;
-      if (response?.success || response?.data?.success) {
-        return handleSuccess(response);
-      }
-      return handleError(response);
+      return handleSuccess(response);
     } catch (error) {
       return handleError(error);
     }
@@ -52,10 +57,7 @@ export const authApiService = {
     try {
       const response = (await api.post(apiConfig.ENDPOINTS.AUTH.LOGOUT)) as any;
       Storage.removeItem("token");
-      if (response?.success || response?.data?.success) {
-        return handleSuccess(response);
-      }
-      return handleError(response);
+      return handleSuccess(response);
     } catch (error) {
       return handleError(error);
     }
@@ -64,23 +66,18 @@ export const authApiService = {
   resetPassword: async (data: NewPasswordData) => {
     try {
       const response = (await api.post(apiConfig.ENDPOINTS.AUTH.RESET_PASSWORD, data)) as any;
-      if (response?.success || response?.data?.success) {
-        return handleSuccess(response);
-      }
-      return handleError(response);
+      return handleSuccess(response);
     } catch (error) {
       return handleError(error);
     }
   },
 
-  verifyOTP: async (otp: string) => {
+  verifyOTP: async (data : VerifyOTPData) => {
     try {
-      const response = (await api.post(apiConfig.ENDPOINTS.AUTH.VERIFY_OTP, { otp })) as any;
-      if (response?.success || response?.data?.success) {
-        return handleSuccess(response);
-      }
-      return handleError(response);
+      const response = (await api.post(apiConfig.ENDPOINTS.AUTH.VERIFY_OTP, data)) as any;
+      return handleSuccess(response);
     } catch (error) {
+      console.log("error-->", JSON.stringify(error));
       return handleError(error);
     }
   },
@@ -90,10 +87,7 @@ export const authApiService = {
       const response = (await api.post(apiConfig.ENDPOINTS.AUTH.SEND_FORGOT_PASSWORD_OTP, {
         email,
       })) as any;
-      if (response?.success || response?.data?.success) {
-        return handleSuccess(response);
-      }
-      return handleError(response);
+      return handleSuccess(response);
     } catch (error) {
       return handleError(error);
     }

@@ -13,7 +13,7 @@ export interface RegisterData {
   email: string;
   password: string;
   username: string;
-  given_name: string;
+  name: string;
 }
 
 export interface AuthResponse {
@@ -30,7 +30,13 @@ export interface PasswordResetData {
 }
 
 export interface NewPasswordData {
-  password: string;
+  email: string;
+  newPassword: string;
+}
+
+export interface VerifyOTPData {
+  otp: string;
+  email: string;
 }
 
 // User related interfaces

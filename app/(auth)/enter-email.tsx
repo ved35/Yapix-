@@ -44,7 +44,7 @@ const EnterEmail = () => {
         if (res?.success) {
           router.replace({
             pathname: "/(auth)/verify-otp",
-            params: { fromScreen: "forgot-password" },
+            params: { fromScreen: "forgot-password", email },
           });
         }
       } catch (error) {

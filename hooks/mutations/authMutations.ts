@@ -1,4 +1,4 @@
-import { LoginCredentials, NewPasswordData, RegisterData } from "@/interface/type";
+import { LoginCredentials, NewPasswordData, RegisterData, VerifyOTPData } from "@/interface/type";
 import { authApiService } from "@/services/authApi/api";
 import useAuthStore from "@/store/authStore";
 import { useMutation } from "@tanstack/react-query";
@@ -59,7 +59,7 @@ export const useLogoutMutation = () => {
 
 export const useVerifyOTPMutation = () => {
   return useMutation({
-    mutationFn: (otp: string) => authApiService.verifyOTP(otp),
+    mutationFn: (data: VerifyOTPData) => authApiService.verifyOTP(data),
     onSuccess: (data) => {
       // Handle successful OTP verification
       // You can add navigation logic here if needed

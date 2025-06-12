@@ -5,7 +5,7 @@ import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
 import { useResetPasswordMutation } from "@/hooks/mutations/authMutations";
 import { resetPasswordSchema, type ResetPasswordFormData } from "@/validation/auth.schema";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
@@ -16,6 +16,8 @@ const ForgotPassword = () => {
   const { t } = useTranslation();
   const { colors } = useTheme();
   const resetPasswordMutation = useResetPasswordMutation();
+
+  const params = useLocalSearchParams();
 
   const [formData, setFormData] = useState<ResetPasswordFormData>({
     password: "",
@@ -54,7 +56,8 @@ const ForgotPassword = () => {
     if (validateForm()) {
       try {
         const res = await resetPasswordMutation.mutateAsync({
-          password: String(formData.password),
+          newPassword: String(formData.password),
+          email: params.email as string,
         });
         if (res?.success) {
           router.push("/(auth)/sign-in");
