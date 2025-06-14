@@ -17,15 +17,13 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    "Montserrat-Regular": require("../assets/fonts/Montserrat-Regular.ttf"),
-    "Montserrat-Medium": require("../assets/fonts/Montserrat-Medium.ttf"),
-    "Montserrat-Light": require("../assets/fonts/Montserrat-Light.ttf"),
-    "Montserrat-Thin": require("../assets/fonts/Montserrat-Thin.ttf"),
-    "Montserrat-ExtraLight": require("../assets/fonts/Montserrat-ExtraLight.ttf"),
-    "Montserrat-SemiBold": require("../assets/fonts/Montserrat-SemiBold.ttf"),
-    "Montserrat-Bold": require("../assets/fonts/Montserrat-Bold.ttf"),
-    "Montserrat-ExtraBold": require("../assets/fonts/Montserrat-ExtraBold.ttf"),
-    "Montserrat-Black": require("../assets/fonts/Montserrat-Black.ttf"),
+    "Font-Regular": require("../assets/fonts/Font-Regular.ttf"),
+    "Font-Medium": require("../assets/fonts/Font-Medium.ttf"),
+    "Font-Light": require("../assets/fonts/Font-Light.ttf"),
+    "Font-SemiBold": require("../assets/fonts/Font-SemiBold.ttf"),
+    "Font-Bold": require("../assets/fonts/Font-Bold.ttf"),
+    "Font-ExtraBold": require("../assets/fonts/Font-ExtraBold.ttf"),
+    "Font-Black": require("../assets/fonts/Font-Black.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {

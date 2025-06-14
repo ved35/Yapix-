@@ -11,9 +11,10 @@ export const useLoginMutation = () => {
     mutationFn: (credentials: LoginCredentials) => authApiService.login(credentials),
     onSuccess: (data) => {
       console.log("data", data);
-      if (data?.token) {
-        Storage.setItem("token", data.token);
-        setUser(data.user);
+      if (data?.data?.token) {
+        Storage.setItem("token", data.data.token);
+        Storage.setItem("refreshToken",data.data.refreshToken)
+        setUser(data.data.user);
       }
     },
     onError: (error) => {

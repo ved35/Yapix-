@@ -1,5 +1,5 @@
 import { useTheme } from "@/context/ThemeContext";
-import React, { useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 
 interface OTPInputProps {
@@ -77,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OTPInput;
+export default memo(OTPInput);

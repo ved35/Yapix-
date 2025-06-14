@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import CustomText from "@/components/CustomText";
+import { StyleSheet, View } from "react-native";
 
 export default function HistoryScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>History</Text>
+      <CustomText style={styles.title}>History</CustomText>
     </View>
   );
 }

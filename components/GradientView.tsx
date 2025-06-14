@@ -1,5 +1,5 @@
 import { GradientViewProps } from "@/interface/type";
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GradientView;
+export default memo(GradientView);

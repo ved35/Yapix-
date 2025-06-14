@@ -6,7 +6,6 @@ import { showMessage } from "react-native-flash-message";
 import api from "../axios";
 
 const handleSuccess = (response: AxiosResponse["data"]) => {
-  console.log("response-1->", JSON.stringify(response));
   if (response?.success || response?.data?.success) {
     showMessage({
       type: "success",

@@ -1,7 +1,8 @@
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
-import React from "react";
-import { ActivityIndicator, Pressable, StyleSheet, Text, TextStyle, ViewStyle } from "react-native";
+import React, { memo } from "react";
+import { ActivityIndicator, Pressable, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import CustomText from "./CustomText";
 
 interface CustomButtonProps {
   text: string;
@@ -48,7 +49,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
           size="small"
         />
       ) : (
-        <Text style={textStyles}>{text}</Text>
+        <CustomText style={textStyles}>{text}</CustomText>
       )}
     </Pressable>
   );
@@ -73,7 +74,6 @@ const getStyles = () => {
     },
     text: {
       fontSize: 17,
-      marginTop: 2,
       fontFamily: FONTS.medium,
     },
     filledText: {},
@@ -81,4 +81,4 @@ const getStyles = () => {
   });
 };
 
-export default CustomButton;
+export default memo(CustomButton);

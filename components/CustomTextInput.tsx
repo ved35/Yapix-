@@ -4,13 +4,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
   StyleSheet,
-  Text,
   TextInput,
   TextInputProps,
   TouchableOpacity,
   View,
-  ViewStyle,
+  ViewStyle
 } from "react-native";
+import CustomText from "./CustomText";
 
 interface CustomTextInputProps extends TextInputProps {
   label?: string;
@@ -35,9 +35,9 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
   return (
     <View style={[styles.container, containerStyle]}>
       {label && (
-        <Text style={styles.label} allowFontScaling={false}>
+        <CustomText style={styles.label} allowFontScaling={false}>
           {label}
-        </Text>
+        </CustomText>
       )}
       <View style={styles.inputWrapper}>
         <TextInput
@@ -62,9 +62,9 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
         )}
       </View>
       {error && (
-        <Text style={styles.errorText} allowFontScaling={false}>
+        <CustomText style={styles.errorText} allowFontScaling={false}>
           {error}
-        </Text>
+        </CustomText>
       )}
     </View>
   );

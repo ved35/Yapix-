@@ -1,49 +1,55 @@
 {
   "expo": {
-    "name": "Yapix",
-    "slug": "Yapix",
+    "name": "Flikup",
+    "slug": "Flikup",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/app_icon.png",
-    "scheme": "yapix",
+    "icon": "./assets/icons/app_icon.png",
+    "scheme": "Flikup",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/images/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0d1321"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.Yapix",
+      "bundleIdentifier": "com.anonymous.Flikup",
       "infoPlist": {
         "NSCameraUsageDescription": "This app needs access to the camera to take photos and videos.",
         "NSPhotoLibraryUsageDescription": "This app needs access to photos to let you share them with your friends.",
         "NSPhotoLibraryAddUsageDescription": "This app needs access to save photos to your photo library.",
         "NSMicrophoneUsageDescription": "This app needs access to the microphone to record audio.",
-        "NSNotificationsUsageDescription": "This app needs to send you notifications about updates and new content.",
-        "NSDocumentsFolderUsageDescription": "This app needs access to documents to save and read files."
+        "NSLocationWhenInUseUsageDescription": "This app needs access to location when open to show relevant content.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs access to location to provide location-based features.",
+        "NSUserNotificationsUsageDescription": "This app needs to send you notifications about updates and new content."
       }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/app_icon.png",
+        "foregroundImage": "./assets/icons/app_icon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.Vibe",
+      "package": "com.anonymous.Flikup",
       "permissions": [
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE",
+        "READ_MEDIA_IMAGES",
+        "READ_MEDIA_VIDEO",
+        "READ_MEDIA_AUDIO",
         "RECORD_AUDIO",
         "MODIFY_AUDIO_SETTINGS",
         "INTERNET",
         "ACCESS_NETWORK_STATE",
         "POST_NOTIFICATIONS",
-        "READ_MEDIA_IMAGES",
-        "READ_MEDIA_VIDEO",
-        "READ_MEDIA_AUDIO"
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION"
       ]
     },
     "plugins": [
@@ -54,7 +60,7 @@
           "image": "./assets/images/logo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#0d1321"
         }
       ]
     ],
@@ -63,40 +69,32 @@
     },
     "fonts": [
       {
-        "asset": "./assets/fonts/Montserrat-Regular.ttf",
-        "family": "Montserrat-Regular"
+        "asset": "./assets/fonts/Font-Regular.ttf",
+        "family": "Font-Regular"
       },
       {
-        "asset": "./assets/fonts/Montserrat-Medium.ttf",
-        "family": "Montserrat-Medium"
+        "asset": "./assets/fonts/Font-Medium.ttf",
+        "family": "Font-Medium"
       },
       {
-        "asset": "./assets/fonts/Montserrat-Light.ttf",
-        "family": "Montserrat-Light"
+        "asset": "./assets/fonts/Font-Light.ttf",
+        "family": "Font-Light"
       },
       {
-        "asset": "./assets/fonts/Montserrat-Thin.ttf",
-        "family": "Montserrat-Thin"
+        "asset": "./assets/fonts/Font-SemiBold.ttf",
+        "family": "Font-SemiBold"
       },
       {
-        "asset": "./assets/fonts/Montserrat-ExtraLight.ttf",
-        "family": "Montserrat-ExtraLight"
+        "asset": "./assets/fonts/Font-Bold.ttf",
+        "family": "Font-Bold"
       },
       {
-        "asset": "./assets/fonts/Montserrat-SemiBold.ttf",
-        "family": "Montserrat-SemiBold"
+        "asset": "./assets/fonts/Font-ExtraBold.ttf",
+        "family": "Font-Bold"
       },
       {
-        "asset": "./assets/fonts/Montserrat-Bold.ttf",
-        "family": "Montserrat-Bold"
-      },
-      {
-        "asset": "./assets/fonts/Montserrat-ExtraBold.ttf",
-        "family": "Montserrat-ExtraBold"
-      },
-      {
-        "asset": "./assets/fonts/Montserrat-Black.ttf",
-        "family": "Montserrat-Black"
+        "asset": "./assets/fonts/Font-Black.ttf",
+        "family": "Font-Black"
       }
     ]
   }

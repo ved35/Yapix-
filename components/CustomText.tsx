@@ -1,22 +1,18 @@
-import { FONTS } from "@/constants/theme";
-import { useTheme } from "@/context/ThemeContext";
-import { CustomTextProps } from "@/interface/type";
-import React from "react";
-import { StyleSheet, Text } from "react-native";
+import React, { memo } from "react";
+import { StyleSheet, Text, TextProps } from "react-native";
 
-const CustomText: React.FC<CustomTextProps> = ({ style, ...props }) => {
-  const { colors } = useTheme();
-  const styles = getStyles(colors);
-
-  return <Text style={[styles.text, style]} allowFontScaling={false} {...props} />;
+const CustomText: React.FC<TextProps> = ({ ...props }) => {
+  const styles = getStyles();
+  return <Text allowFontScaling={false} style={[styles.text, props.style]} {...props}>{props.children}</Text>
 };
 
-const getStyles = (colors: any) =>
+const getStyles = () =>
   StyleSheet.create({
     text: {
-      color: colors.black,
-      fontFamily: FONTS.regular,
+      verticalAlign: 'middle',
+      includeFontPadding: false,
+      textAlignVertical: 'center',
     },
   });
 
-export default CustomText;
+export default memo(CustomText);

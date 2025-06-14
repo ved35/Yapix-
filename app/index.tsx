@@ -47,6 +47,7 @@ const GetStarted = () => {
             <CustomButton
               text={t("onboarding.getStarted")}
               onPress={() => {
+                console.log("Navigating to sign-up");
                 router.navigate("/(auth)/sign-up");
               }}
               variant="filled"
@@ -55,6 +56,7 @@ const GetStarted = () => {
             <CustomButton
               text={t("auth.signIn")}
               onPress={() => {
+                console.log("Navigating to sign-in");
                 router.navigate("/(auth)/sign-in");
               }}
               variant="outlined"

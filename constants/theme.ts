@@ -17,13 +17,11 @@ export const colors = {
 };
 
 export const FONTS = {
-  regular: "Montserrat-Regular",
-  medium: "Montserrat-Medium",
-  light: "Montserrat-Light",
-  thin: "Montserrat-Thin",
-  extraLight: "Montserrat-ExtraLight",
-  semiBold: "Montserrat-SemiBold",
-  bold: "Montserrat-Bold",
-  extraBold: "Montserrat-ExtraBold",
-  black: "Montserrat-Black",
+  regular: "Font-Regular",
+  medium: "Font-Medium",
+  light: "Font-Light",
+  semiBold: "Font-SemiBold",
+  bold: "Font-Bold",
+  extraBold: "Font-ExtraBold",
+  black: "Font-Black",
 };

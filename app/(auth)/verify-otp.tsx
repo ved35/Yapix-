@@ -122,7 +122,7 @@ const VerifyOTP = () => {
         if(params.fromScreen === "forgot-password") {
           router.push({pathname: '/(auth)/forgot-password', params: {email: params.email as string}});
         } else {
-          router.push('/(tabs)/profile');
+          router.push('/(auth)/sign-in');
         }
       }
     } catch (error: any) {

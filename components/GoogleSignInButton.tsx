@@ -2,8 +2,9 @@ import { Icons } from "@/assets/assets";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
 import { GoogleSignInButtonProps } from "@/interface/type";
-import React from "react";
-import { ActivityIndicator, Image, Pressable, StyleSheet, Text } from "react-native";
+import React, { memo } from "react";
+import { ActivityIndicator, Image, Pressable, StyleSheet } from "react-native";
+import CustomText from "./CustomText";
 
 const GoogleSignInButton = ({
   onPress,
@@ -18,7 +19,7 @@ const GoogleSignInButton = ({
       ) : (
         <>
           <Image source={Icons.google} style={styles.googleIcon} />
-          <Text style={styles.googleText}>Continue with Google</Text>
+          <CustomText style={styles.googleText}>Continue with Google</CustomText>
         </>
       )}
     </Pressable>
@@ -56,4 +57,4 @@ const getStyles = () => {
   });
 };
 
-export default GoogleSignInButton;
+export default memo(GoogleSignInButton);
