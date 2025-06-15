@@ -1,6 +1,6 @@
 import { apiConfig } from "@/config/apiConfig";
 import Storage from "@/hooks/Storage";
-import { LoginCredentials, NewPasswordData, RegisterData, VerifyOTPData } from "@/interface/type";
+import { GoogleData, LoginCredentials, NewPasswordData, RegisterData, VerifyOTPData } from "@/interface/type";
 import { AxiosResponse } from "axios";
 import { showMessage } from "react-native-flash-message";
 import api from "../axios";
@@ -46,6 +46,15 @@ export const authApiService = {
   register: async (userData: RegisterData) => {
     try {
       const response = (await api.post(apiConfig.ENDPOINTS.AUTH.SIGNUP, userData)) as any;
+      return handleSuccess(response);
+    } catch (error) {
+      return handleError(error);
+    }
+  },
+
+  googleSignIn: async (data: GoogleData) => {
+    try {
+      const response = (await api.post(apiConfig.ENDPOINTS.AUTH.GOOGLE_LOGIN, data)) as any;
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);

@@ -15,7 +15,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.Flikup",
+      "bundleIdentifier": "com.mvproject.Flikup",
       "infoPlist": {
         "NSCameraUsageDescription": "This app needs access to the camera to take photos and videos.",
         "NSPhotoLibraryUsageDescription": "This app needs access to photos to let you share them with your friends.",
@@ -31,8 +31,9 @@
         "foregroundImage": "./assets/icons/app_icon.png",
         "backgroundColor": "#ffffff"
       },
+      "googleServicesFile": "./google-services.json",
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.Flikup",
+      "package": "com.mvproject.Flikup",
       "permissions": [
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
@@ -62,7 +63,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#0d1321"
         }
-      ]
+      ],
+      "@react-native-google-signin/google-signin"
     ],
     "experiments": {
       "typedRoutes": true

@@ -1,4 +1,4 @@
-import { LoginCredentials, NewPasswordData, RegisterData, VerifyOTPData } from "@/interface/type";
+import { GoogleData, LoginCredentials, NewPasswordData, RegisterData, VerifyOTPData } from "@/interface/type";
 import { authApiService } from "@/services/authApi/api";
 import useAuthStore from "@/store/authStore";
 import { useMutation } from "@tanstack/react-query";
@@ -31,9 +31,30 @@ export const useSignupMutation = () => {
     mutationFn: (userData: RegisterData) => authApiService.register(userData),
     onSuccess: (data) => {
       console.log("data", data);
-      if (data?.token) {
-        Storage.setItem("token", data.token);
-        setUser(data.user);
+      if (data?.data?.token) {
+        Storage.setItem("token", data.data.token);
+        Storage.setItem("refreshToken",data.data.refreshToken)
+        setUser(data.data.user);
+      }
+    },
+    onError: (error) => {
+      // Error is already handled in the API service
+      console.error("Signup error:", error);
+    },
+  });
+};
+
+export const useGoogleMutation = () => {
+  const { setUser } = useAuthStore();
+
+  return useMutation({
+    mutationFn: (userData: GoogleData) => authApiService.googleSignIn(userData),
+    onSuccess: (data) => {
+      console.log("data", data);
+      if (data?.data?.token) {
+        Storage.setItem("token", data.data.token);
+        Storage.setItem("refreshToken",data.data.refreshToken)
+        setUser(data.data.user);
       }
     },
     onError: (error) => {

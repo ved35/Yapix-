@@ -11,12 +11,15 @@
     "lint": "expo lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "build": "cd android ./gradlew assembleRelease"
+    "build": "cd android && gradlew assembleRelease"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
     "@gorhom/bottom-sheet": "^5.1.6",
     "@react-native-community/netinfo": "^11.4.1",
+    "@react-native-firebase/app": "^22.2.1",
+    "@react-native-firebase/auth": "^22.2.1",
+    "@react-native-google-signin/google-signin": "^14.0.1",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
@@ -24,12 +27,17 @@
     "@tanstack/react-query": "^5.79.0",
     "axios": "^1.9.0",
     "expo": "53.0.11",
+    "expo-av": "~15.1.6",
     "expo-blur": "~14.1.5",
+    "expo-camera": "~16.1.8",
     "expo-constants": "~17.1.6",
     "expo-font": "~13.3.1",
     "expo-haptics": "~14.1.4",
     "expo-image": "~2.3.0",
+    "expo-image-picker": "~16.1.4",
     "expo-linking": "~7.1.5",
+    "expo-location": "~18.1.5",
+    "expo-notifications": "~0.31.3",
     "expo-router": "~5.1.0",
     "expo-splash-screen": "~0.30.9",
     "expo-status-bar": "~2.2.3",
@@ -53,12 +61,7 @@
     "react-native-webview": "13.13.5",
     "socket.io-client": "^4.8.1",
     "zod": "^3.25.56",
-    "zustand": "^5.0.5",
-    "expo-image-picker": "~16.1.4",
-    "expo-camera": "~16.1.8",
-    "expo-location": "~18.1.5",
-    "expo-av": "~15.1.6",
-    "expo-notifications": "~0.31.3"
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

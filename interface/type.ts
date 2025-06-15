@@ -16,6 +16,12 @@ export interface RegisterData {
   name: string;
 }
 
+export interface GoogleData {
+  email: string,
+  name: string,
+  profile_pic: string
+}
+
 export interface AuthResponse {
   token: string;
   user: {
