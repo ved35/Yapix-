@@ -1,6 +1,6 @@
-import { BottomSheetBackdropProps, BottomSheetModal } from "@gorhom/bottom-sheet";
+import { BottomSheetBackdropProps, BottomSheetModal, BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import React, { useMemo } from "react";
-import { StyleProp, useWindowDimensions, ViewStyle } from "react-native";
+import { SafeAreaView, StyleProp, useWindowDimensions, View, ViewStyle } from "react-native";
 import Animated, { Extrapolation, interpolate, useAnimatedStyle } from "react-native-reanimated";
 
 interface CustomBottomSheetModalProps {
@@ -25,8 +25,22 @@ const CustomBottomSheet: React.FC<CustomBottomSheetModalProps> = ({
       backgroundComponent={(props) => (
         <Backdrop {...props} bottomSheetModalRef={bottomSheetModalRef} />
       )}
+      index={0}
+      maxDynamicContentSize={height * 0.8}
+      backgroundStyle={{
+        backgroundColor: "#f6f6f6",
+      }}
     >
-      {children}
+      <BottomSheetScrollView
+      showsVerticalScrollIndicator={false}
+      bounces={false}
+      >
+        <SafeAreaView>
+          <View style={{paddingBottom:30}}>
+            {children}
+          </View>
+        </SafeAreaView>
+      </BottomSheetScrollView>
     </BottomSheetModal>
   );
 };

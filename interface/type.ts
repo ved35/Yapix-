@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { TextProps, ViewStyle } from "react-native";
+import { ImageStyle, TextProps, ViewStyle } from "react-native";
 import { MessageType } from "react-native-flash-message";
 import { colors } from "../constants/theme";
 
@@ -103,3 +103,10 @@ export interface GradientViewProps {
 export interface CustomTextProps extends TextProps {
   style?: TextProps["style"];
 }
+ export interface CustomImageLoaderProps {
+  style: ViewStyle | ImageStyle;
+  source: string | { uri: string };
+  resizeMode: "contain" | "cover" | "stretch" | "repeat" | "center";
+  borderRadius: number;
+  errorImage: string;
+ }
