@@ -1,10 +1,10 @@
 import CustomText from "@/components/CustomText";
 import { StyleSheet, View } from "react-native";
 
-export default function ProfileScreen() {
+export default function Call() {
   return (
     <View style={styles.container}>
-      <CustomText style={styles.title}>Profile</CustomText>
+      <CustomText style={styles.title}>Call</CustomText>
     </View>
   );
 }

@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import { AppState, StyleSheet, TouchableOpacity, View } from "react-native";
 import { showMessage } from "react-native-flash-message";
 
-const COUNTDOWN_DURATION = 1210; // 60 seconds countdown
+const COUNTDOWN_DURATION = 120; // 60 seconds countdown
 
 const VerifyOTP = () => {
   const { t } = useTranslation();

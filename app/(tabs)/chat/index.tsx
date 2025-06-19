@@ -1,10 +1,10 @@
 import CustomText from "@/components/CustomText";
 import { StyleSheet, View } from "react-native";
 
-export default function HistoryScreen() {
+export default function Chat() {
   return (
     <View style={styles.container}>
-      <CustomText style={styles.title}>History</CustomText>
+      <CustomText style={styles.title}>Chat</CustomText>
     </View>
   );
 }

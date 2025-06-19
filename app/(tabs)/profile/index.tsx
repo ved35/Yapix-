@@ -1,10 +1,13 @@
 import CustomText from "@/components/CustomText";
 import { StyleSheet, View } from "react-native";
 
-export default function HomeScreen() {
+export default function Profile() {
   return (
     <View style={styles.container}>
-      <CustomText style={styles.title}>Home</CustomText>
+      <View style={{width: '90%', flex:1, alignItems: 'center'}}>
+      {/* <CustomHeader title="Profile" style={{marginTop: 50}} /> */}
+      <CustomText style={styles.title}>Profile</CustomText>
+      </View>
     </View>
   );
 }
@@ -13,7 +16,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
     backgroundColor: "#FFFFFF",
   },
   title: {
