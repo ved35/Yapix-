@@ -1,6 +1,12 @@
 import { apiConfig } from "@/config/apiConfig";
 import Storage from "@/hooks/Storage";
-import { GoogleData, LoginCredentials, NewPasswordData, RegisterData, VerifyOTPData } from "@/interface/type";
+import {
+  GoogleData,
+  LoginCredentials,
+  NewPasswordData,
+  RegisterData,
+  VerifyOTPData,
+} from "@/interface/type";
 import { AxiosResponse } from "axios";
 import { showMessage } from "react-native-flash-message";
 import api from "../axios";
@@ -80,7 +86,7 @@ export const authApiService = {
     }
   },
 
-  verifyOTP: async (data : VerifyOTPData) => {
+  verifyOTP: async (data: VerifyOTPData) => {
     try {
       const response = (await api.post(apiConfig.ENDPOINTS.AUTH.VERIFY_OTP, data)) as any;
       return handleSuccess(response);

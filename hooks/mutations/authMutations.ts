@@ -1,4 +1,10 @@
-import { GoogleData, LoginCredentials, NewPasswordData, RegisterData, VerifyOTPData } from "@/interface/type";
+import {
+  GoogleData,
+  LoginCredentials,
+  NewPasswordData,
+  RegisterData,
+  VerifyOTPData,
+} from "@/interface/type";
 import { authApiService } from "@/services/authApi/api";
 import useAuthStore from "@/store/authStore";
 import { useMutation } from "@tanstack/react-query";
@@ -13,7 +19,7 @@ export const useLoginMutation = () => {
       console.log("data", data);
       if (data?.data?.token) {
         Storage.setItem("token", data.data.token);
-        Storage.setItem("refreshToken",data.data.refreshToken)
+        Storage.setItem("refreshToken", data.data.refreshToken);
         setUser(data.data.user);
       }
     },
@@ -33,7 +39,7 @@ export const useSignupMutation = () => {
       console.log("data", data);
       if (data?.data?.token) {
         Storage.setItem("token", data.data.token);
-        Storage.setItem("refreshToken",data.data.refreshToken)
+        Storage.setItem("refreshToken", data.data.refreshToken);
         setUser(data.data.user);
       }
     },
@@ -53,7 +59,7 @@ export const useGoogleMutation = () => {
       console.log("data", data);
       if (data?.data?.token) {
         Storage.setItem("token", data.data.token);
-        Storage.setItem("refreshToken",data.data.refreshToken)
+        Storage.setItem("refreshToken", data.data.refreshToken);
         setUser(data.data.user);
       }
     },

@@ -3,7 +3,10 @@ import CustomText from "@/components/CustomText";
 import OTPInput from "@/components/OTPInput";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
-import { useSendForgotPasswordOTPMutation, useVerifyOTPMutation } from "@/hooks/mutations/authMutations";
+import {
+  useSendForgotPasswordOTPMutation,
+  useVerifyOTPMutation,
+} from "@/hooks/mutations/authMutations";
 import { VerifyOTPData } from "@/interface/type";
 import { otpSchema } from "@/validation/auth.schema";
 import { router, useLocalSearchParams } from "expo-router";
@@ -85,10 +88,10 @@ const VerifyOTP = () => {
       setIsResending(true);
       // Since resendOTP is not available in the service, we'll use the same endpoint as verifyOTP
       // but with a different parameter to indicate it's a resend request
-      const data : VerifyOTPData = {
+      const data: VerifyOTPData = {
         otp: "resend",
         email: params.email as string,
-      }
+      };
       await verifyOTPMutation.mutateAsync(data);
       setCountdown(COUNTDOWN_DURATION);
       showMessage({
@@ -113,16 +116,19 @@ const VerifyOTP = () => {
     }
 
     try {
-      const data : VerifyOTPData = {
+      const data: VerifyOTPData = {
         otp,
         email: params.email as string,
-      }
+      };
       const response = await verifyOTPMutation.mutateAsync(data);
       if (response?.success) {
-        if(params.fromScreen === "forgot-password") {
-          router.push({pathname: '/(auth)/forgot-password', params: {email: params.email as string}});
+        if (params.fromScreen === "forgot-password") {
+          router.push({
+            pathname: "/(auth)/forgot-password",
+            params: { email: params.email as string },
+          });
         } else {
-          router.push('/(auth)/sign-in');
+          router.push("/(auth)/sign-in");
         }
       }
     } catch (error: any) {

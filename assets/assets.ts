@@ -6,4 +6,5 @@ export const Images = {
 
 export const Icons = {
   google: require("./icons/google.png"),
+  password: require("./icons/password.png"),
 };

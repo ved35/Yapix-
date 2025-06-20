@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDUJY00zHYnR3caJgcespvq6jcI0QvEALY",
@@ -7,7 +7,7 @@ const firebaseConfig = {
   projectId: "flikup-ee7f4",
   storageBucket: "flikup-ee7f4.firebasestorage.app",
   messagingSenderId: "17253970169",
-  appId: "1:17253970169:android:74e456ea52d7378bd27228"
+  appId: "1:17253970169:android:74e456ea52d7378bd27228",
 };
 
 // Initialize Firebase

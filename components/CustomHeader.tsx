@@ -26,7 +26,7 @@ const CustomHeader = ({ hideBackButton = false, title, rightIcons, style }: Cust
         <Ionicons name="chevron-back" size={22} color="#000" />
       </Pressable>
       <CustomText style={styles.title}>{title}</CustomText>
-      {rightIcons ? rightIcons() : <View style={{height:40, width:40}} />}
+      {rightIcons ? rightIcons() : <View style={{ height: 40, width: 40 }} />}
     </View>
   );
 };
@@ -41,7 +41,7 @@ const getStyle = () => {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-      width: '100%'
+      width: "100%",
     },
     backButton: {
       height: 40,
@@ -54,14 +54,14 @@ const getStyle = () => {
       alignItems: "center",
     },
     title: {
-      fontSize: 22,
+      fontSize: 24,
       fontFamily: FONTS.bold,
       color: colors.black,
     },
     rightIcons: {
       flexDirection: "row",
       alignItems: "center",
-      gap: 5
-    }
+      gap: 5,
+    },
   });
 };

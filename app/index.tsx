@@ -5,14 +5,27 @@ import GoogleSignInButton from "@/components/GoogleSignInButton";
 import GradientView from "@/components/GradientView";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
+import Storage from "@/hooks/Storage";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
 
 const GetStarted = () => {
   const styles = style();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await Storage.getItem("token");
+      console.log("token->", token);
+      if (token) {
+        router.replace("/(tabs)/chat");
+      }
+    };
+    checkToken();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -51,7 +64,7 @@ const GetStarted = () => {
                 router.navigate("/(auth)/sign-up");
               }}
               variant="filled"
-              style={{ marginBottom: 12 }}
+              style={{ marginBottom: 12, width: 260 }}
             />
             <CustomButton
               text={t("auth.signIn")}
@@ -59,10 +72,11 @@ const GetStarted = () => {
                 console.log("Navigating to sign-in");
                 router.navigate("/(auth)/sign-in");
               }}
+              style={{ width: 260 }}
               variant="outlined"
             />
             <CustomText style={styles.orText}>{t("common.continueWith")}</CustomText>
-            <GoogleSignInButton />
+            <GoogleSignInButton style={{ width: 260 }} />
           </View>
         </ScrollView>
       </GradientView>

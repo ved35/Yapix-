@@ -3,15 +3,19 @@ import { StyleSheet, Text, TextProps } from "react-native";
 
 const CustomText: React.FC<TextProps> = ({ ...props }) => {
   const styles = getStyles();
-  return <Text allowFontScaling={false} style={[styles.text, props.style]} {...props}>{props.children}</Text>
+  return (
+    <Text allowFontScaling={false} style={[styles.text, props.style]} {...props}>
+      {props.children}
+    </Text>
+  );
 };
 
 const getStyles = () =>
   StyleSheet.create({
     text: {
-      verticalAlign: 'middle',
+      verticalAlign: "middle",
       includeFontPadding: false,
-      textAlignVertical: 'center',
+      textAlignVertical: "center",
     },
   });
 

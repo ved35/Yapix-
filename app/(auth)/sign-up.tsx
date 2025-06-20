@@ -68,7 +68,7 @@ const SignUp = () => {
         const res = await signupMutation.mutateAsync(data);
         console.log("res-->", JSON.stringify(res));
         if (res?.success) {
-          router.navigate({pathname: "/(auth)/verify-otp", params: {email: formData.email}});
+          router.navigate({ pathname: "/(auth)/verify-otp", params: { email: formData.email } });
         }
       } catch (error) {
         console.log("error", error);

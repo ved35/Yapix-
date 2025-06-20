@@ -48,7 +48,7 @@ const OTPInput: React.FC<OTPInputProps> = ({ onOTPComplete }) => {
     // Handle backspace
     if (e.nativeEvent.key === "Backspace") {
       const newOtp = [...otp];
-      
+
       // If current input is empty and not the first input, move to previous input
       if (!otp[index] && index > 0) {
         inputRefs.current[index - 1]?.focus();
@@ -56,7 +56,7 @@ const OTPInput: React.FC<OTPInputProps> = ({ onOTPComplete }) => {
         newOtp[index - 1] = "";
         setOtp(newOtp);
         onOTPComplete(newOtp.join(""));
-      } 
+      }
       // If current input has a value, clear it
       else if (otp[index]) {
         newOtp[index] = "";

@@ -8,7 +8,7 @@ import {
   TextInputProps,
   TouchableOpacity,
   View,
-  ViewStyle
+  ViewStyle,
 } from "react-native";
 import CustomText from "./CustomText";
 

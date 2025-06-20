@@ -62,7 +62,6 @@ const getStyles = () => {
       borderRadius: 10,
       height: 50,
       justifyContent: "center",
-      width: 260,
       alignItems: "center",
     },
     filledButton: {

@@ -13,7 +13,7 @@ const useAuthStore = create<AuthState>()(
     }),
     {
       name: "auth-storage",
-      storage: Storage
+      storage: Storage,
     }
   )
 );

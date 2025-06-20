@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { ImageStyle, TextProps, ViewStyle } from "react-native";
+import { ImageSourcePropType, ImageStyle, TextProps, ViewStyle } from "react-native";
 import { MessageType } from "react-native-flash-message";
 import { colors } from "../constants/theme";
 
@@ -17,9 +17,9 @@ export interface RegisterData {
 }
 
 export interface GoogleData {
-  email: string,
-  name: string,
-  profile_pic: string
+  email: string;
+  name: string;
+  profile_pic: string;
 }
 
 export interface AuthResponse {
@@ -49,7 +49,7 @@ export interface VerifyOTPData {
 export interface User {
   id: string;
   email: string;
-  name: string;
+  username: string;
 }
 
 export interface AuthState {
@@ -103,10 +103,10 @@ export interface GradientViewProps {
 export interface CustomTextProps extends TextProps {
   style?: TextProps["style"];
 }
- export interface CustomImageLoaderProps {
-  style: ViewStyle | ImageStyle;
-  source: string | { uri: string };
+export interface CustomImageLoaderProps {
+  style: ImageStyle;
+  source: ImageSourcePropType | null;
   resizeMode: "contain" | "cover" | "stretch" | "repeat" | "center";
   borderRadius: number;
-  errorImage: string;
- }
+  errorImage?: ImageSourcePropType;
+}
