@@ -139,13 +139,11 @@ const VerifyOTP = () => {
   return (
     <View style={styles.container}>
       <View>
-        <CustomText style={[styles.subtitle, { color: colors.gray }]}>
+        <CustomText style={[styles.subtitle, styles.subtitleGray]}>
           {t("auth.otpDescription")}
         </CustomText>
         <OTPInput onOTPComplete={handleOTPChange} />
-        {error && (
-          <CustomText style={[styles.errorText, { color: colors.red }]}>{error}</CustomText>
-        )}
+        {error && <CustomText style={[styles.errorText, styles.errorTextRed]}>{error}</CustomText>}
         <View style={styles.resendContainer}>
           <TouchableOpacity
             onPress={handleResendOTP}
@@ -156,14 +154,17 @@ const VerifyOTP = () => {
             ]}
           >
             <CustomText
-              style={[styles.resendText, { color: countdown > 0 ? colors.gray : colors.primary }]}
+              style={[
+                styles.resendText,
+                countdown > 0 ? styles.resendTextGray : styles.resendTextPrimary,
+              ]}
             >
               {countdown > 0 ? `${t("auth.resendOTP")} (${countdown}s)` : t("auth.resendOTP")}
             </CustomText>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{ flex: 1 }} />
+      <View style={styles.spacer} />
       <CustomButton
         text={t("auth.verify")}
         onPress={handleVerifyOTP}
@@ -182,6 +183,7 @@ const style = () => {
     container: {
       flex: 1,
       padding: 20,
+      paddingBottom: 50,
       justifyContent: "space-between",
     },
     title: {
@@ -227,6 +229,21 @@ const style = () => {
       fontSize: 14,
       color: colors.gray,
       fontFamily: FONTS.medium,
+    },
+    subtitleGray: {
+      color: colors.gray,
+    },
+    errorTextRed: {
+      color: colors.red,
+    },
+    resendTextGray: {
+      color: colors.gray,
+    },
+    resendTextPrimary: {
+      color: colors.primary,
+    },
+    spacer: {
+      flex: 1,
     },
   });
 };

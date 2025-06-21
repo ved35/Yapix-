@@ -1,18 +1,9 @@
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
+import { CustomButtonProps, ThemeContextType } from "@/interface/type";
 import React, { memo } from "react";
-import { ActivityIndicator, Pressable, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ActivityIndicator, Pressable, StyleSheet } from "react-native";
 import CustomText from "./CustomText";
-
-interface CustomButtonProps {
-  text: string;
-  onPress: () => void;
-  variant?: "filled" | "outlined";
-  style?: ViewStyle;
-  textStyle?: TextStyle;
-  disabled?: boolean;
-  loading?: boolean;
-}
 
 const CustomButton: React.FC<CustomButtonProps> = ({
   text,
@@ -24,7 +15,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   loading = false,
 }) => {
   const { colors } = useTheme();
-  const styles = getStyles();
+  const styles = getStyles(colors);
 
   const buttonStyles = [
     styles.button,
@@ -55,8 +46,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   );
 };
 
-const getStyles = () => {
-  const { colors } = useTheme();
+const getStyles = (colors: ThemeContextType["colors"]) => {
   return StyleSheet.create({
     button: {
       borderRadius: 10,

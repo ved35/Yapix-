@@ -1,3 +1,4 @@
+import { PermissionHookResult } from "@/interface/type";
 import { useEffect, useState } from "react";
 import { Alert, Linking, Platform } from "react-native";
 import {
@@ -38,13 +39,7 @@ export const handleNotificationPermission = async () => {
   } catch (error) {}
 };
 
-interface permissionHookResult {
-  status: PermissionStatus;
-  requestPermissions: () => Promise<PermissionStatus>;
-  checkPermissions: () => Promise<PermissionStatus>;
-}
-
-const usePermission = (permission: Permission): permissionHookResult => {
+const usePermission = (permission: Permission): PermissionHookResult => {
   const [status, setStatus] = useState<PermissionStatus>(RESULTS.DENIED as PermissionStatus);
 
   const checkPermissions = async (): Promise<PermissionStatus> => {
@@ -97,3 +92,5 @@ const usePermission = (permission: Permission): permissionHookResult => {
     requestPermissions: requestPermission,
   };
 };
+
+export default usePermission;

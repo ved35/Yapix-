@@ -1,27 +1,15 @@
-import {
-  BottomSheetBackdropProps,
-  BottomSheetModal,
-  BottomSheetScrollView,
-} from "@gorhom/bottom-sheet";
+import { BackdropProps, CustomBottomSheetModalProps } from "@/interface/type";
+import { BottomSheetModal, BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import React, { useMemo } from "react";
-import { SafeAreaView, StyleProp, useWindowDimensions, View, ViewStyle } from "react-native";
+import { SafeAreaView, StyleSheet, useWindowDimensions, View } from "react-native";
 import Animated, { Extrapolation, interpolate, useAnimatedStyle } from "react-native-reanimated";
-
-interface CustomBottomSheetModalProps {
-  bottomSheetModalRef: React.RefObject<BottomSheetModal | null>;
-  children: React.ReactNode;
-}
-
-interface BackdropProps extends BottomSheetBackdropProps {
-  bottomSheetModalRef: React.RefObject<BottomSheetModal | null>;
-  style?: StyleProp<ViewStyle>;
-}
 
 const CustomBottomSheet: React.FC<CustomBottomSheetModalProps> = ({
   children,
   bottomSheetModalRef,
 }) => {
   const { height } = useWindowDimensions();
+  const styles = getStyles();
 
   return (
     <BottomSheetModal
@@ -31,13 +19,11 @@ const CustomBottomSheet: React.FC<CustomBottomSheetModalProps> = ({
       )}
       index={0}
       maxDynamicContentSize={height * 0.8}
-      backgroundStyle={{
-        backgroundColor: "#f6f6f6",
-      }}
+      backgroundStyle={styles.backgroundStyle}
     >
       <BottomSheetScrollView showsVerticalScrollIndicator={false} bounces={false}>
         <SafeAreaView>
-          <View style={{ paddingBottom: 30 }}>{children}</View>
+          <View style={styles.contentContainer}>{children}</View>
         </SafeAreaView>
       </BottomSheetScrollView>
     </BottomSheetModal>
@@ -45,24 +31,34 @@ const CustomBottomSheet: React.FC<CustomBottomSheetModalProps> = ({
 };
 
 const Backdrop: React.FC<BackdropProps> = ({ animatedIndex, bottomSheetModalRef, style }) => {
+  const styles = getStyles();
+
   const containerAnimatedStyle = useAnimatedStyle(() => ({
     opacity: interpolate(animatedIndex.value, [1, 1], [1, 1], Extrapolation.CLAMP),
   }));
 
   const containerStyle = useMemo(
-    () => [
-      style,
-      {
-        backgroundColor: "rgba(0,0,0,0.2)",
-      },
-      containerAnimatedStyle,
-    ],
+    () => [style, styles.backdropStyle, containerAnimatedStyle],
     [style, containerAnimatedStyle]
   );
 
   return (
     <Animated.View onTouchStart={() => bottomSheetModalRef.current?.close} style={containerStyle} />
   );
+};
+
+const getStyles = () => {
+  return StyleSheet.create({
+    backgroundStyle: {
+      backgroundColor: "#f6f6f6",
+    },
+    contentContainer: {
+      paddingBottom: 30,
+    },
+    backdropStyle: {
+      backgroundColor: "rgba(0,0,0,0.2)",
+    },
+  });
 };
 
 export default CustomBottomSheet;

@@ -1,13 +1,11 @@
 import { useTheme } from "@/context/ThemeContext";
+import { OTPInputProps } from "@/interface/type";
 import React, { memo, useRef, useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 
-interface OTPInputProps {
-  onOTPComplete: (otp: string) => void;
-}
-
 const OTPInput: React.FC<OTPInputProps> = ({ onOTPComplete }) => {
   const { colors } = useTheme();
+  const styles = getStyles(colors);
   const [otp, setOtp] = useState<string[]>(Array(6).fill(""));
   const inputRefs = useRef<Array<TextInput | null>>([]);
 
@@ -76,7 +74,7 @@ const OTPInput: React.FC<OTPInputProps> = ({ onOTPComplete }) => {
             ref={(ref) => {
               inputRefs.current[index] = ref;
             }}
-            style={[styles.input, { borderColor: otp[index] ? colors.primary : colors.gray }]}
+            style={[styles.input, otp[index] ? styles.inputFilled : styles.inputEmpty]}
             maxLength={6}
             keyboardType="number-pad"
             value={otp[index]}
@@ -88,22 +86,30 @@ const OTPInput: React.FC<OTPInputProps> = ({ onOTPComplete }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    paddingHorizontal: 20,
-  },
-  input: {
-    width: 45,
-    height: 45,
-    borderWidth: 1,
-    borderRadius: 8,
-    textAlign: "center",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-});
+const getStyles = (colors: any) => {
+  return StyleSheet.create({
+    container: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      width: "100%",
+      paddingHorizontal: 20,
+    },
+    input: {
+      width: 45,
+      height: 45,
+      borderWidth: 1,
+      borderRadius: 8,
+      textAlign: "center",
+      fontSize: 20,
+      fontWeight: "bold",
+    },
+    inputFilled: {
+      borderColor: colors.primary,
+    },
+    inputEmpty: {
+      borderColor: colors.gray,
+    },
+  });
+};
 
 export default memo(OTPInput);

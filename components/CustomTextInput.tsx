@@ -1,23 +1,10 @@
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
+import { CustomTextInputProps, ThemeContextType } from "@/interface/type";
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  TextInput,
-  TextInputProps,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import CustomText from "./CustomText";
-
-interface CustomTextInputProps extends TextInputProps {
-  label?: string;
-  containerStyle?: ViewStyle;
-  password?: boolean;
-  error?: string;
-}
 
 const CustomTextInput: React.FC<CustomTextInputProps> = ({
   label,
@@ -42,7 +29,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
       <View style={styles.inputWrapper}>
         <TextInput
           style={[styles.input, error && styles.inputError, style]}
-          placeholderTextColor={colors.gray}
+          placeholderTextColor={colors.textSecondary}
           secureTextEntry={password && !showPassword}
           allowFontScaling={false}
           {...props}
@@ -56,7 +43,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
             <MaterialIcons
               name={showPassword ? "visibility" : "visibility-off"}
               size={20}
-              color={colors.gray}
+              color={colors.textSecondary}
             />
           </TouchableOpacity>
         )}
@@ -70,7 +57,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
   );
 };
 
-const getStyles = (colors: any) =>
+const getStyles = (colors: ThemeContextType["colors"]) =>
   StyleSheet.create({
     container: {
       width: "100%",
@@ -78,7 +65,7 @@ const getStyles = (colors: any) =>
     },
     label: {
       fontSize: 14,
-      color: colors.black,
+      color: colors.text,
       fontFamily: FONTS.medium,
       marginBottom: 4,
       marginTop: 12,
@@ -91,17 +78,17 @@ const getStyles = (colors: any) =>
     input: {
       width: "100%",
       height: 50,
-      borderColor: colors.lightGray,
+      borderColor: colors.border,
       borderWidth: 1,
       borderRadius: 10,
       paddingHorizontal: 12,
-      backgroundColor: colors.white,
-      color: colors.black,
+      backgroundColor: colors.surface,
+      color: colors.text,
       fontSize: 14,
       fontFamily: FONTS.regular,
     },
     inputError: {
-      borderColor: colors.red,
+      borderColor: colors.error,
     },
     eyeIcon: {
       position: "absolute",
@@ -109,7 +96,7 @@ const getStyles = (colors: any) =>
       top: 15,
     },
     errorText: {
-      color: colors.red,
+      color: colors.error,
       fontSize: 12,
       fontFamily: FONTS.regular,
       marginTop: 4,

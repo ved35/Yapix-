@@ -173,6 +173,7 @@ const style = () => {
       backgroundColor: colors.white,
       paddingVertical: 32,
       paddingHorizontal: 20,
+      paddingBottom: 50,
     },
     iconContainer: {
       marginBottom: 16,

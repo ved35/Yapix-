@@ -5,6 +5,7 @@ import GoogleSignInButton from "@/components/GoogleSignInButton";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
 import { useLoginMutation } from "@/hooks/mutations/authMutations";
+import { ThemeContextType } from "@/interface/type";
 import { signInSchema, type SignInFormData } from "@/validation/auth.schema";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -22,7 +23,8 @@ import { ZodError } from "zod";
 import { Images } from "../../assets/assets";
 
 const SignIn = () => {
-  const styles = style();
+  const { colors } = useTheme();
+  const styles = getStyles(colors);
   const { t } = useTranslation();
   const loginMutation = useLoginMutation();
 
@@ -80,7 +82,7 @@ const SignIn = () => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1 }}
+      style={styles.keyboardAvoidingView}
     >
       <ImageBackground source={Images.loginBackground} style={styles.background}>
         <Pressable
@@ -88,7 +90,7 @@ const SignIn = () => {
           style={styles.backButton}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
-          <Ionicons name="chevron-back" size={22} color="#000" />
+          <Ionicons name="chevron-back" size={22} color={colors.text} />
         </Pressable>
         <View style={styles.container}>
           <View style={styles.topSection} />
@@ -117,7 +119,7 @@ const SignIn = () => {
             >
               <CustomText style={styles.forgotPasswordText}>{t("auth.forgotPassword")}</CustomText>
             </Pressable>
-            <View style={{ flex: 1 }} />
+            <View style={styles.spacer} />
             <CustomButton
               text={t("auth.signIn")}
               onPress={handleSignIn}
@@ -150,8 +152,7 @@ const SignIn = () => {
 
 export default SignIn;
 
-const style = () => {
-  const { colors } = useTheme();
+const getStyles = (colors: ThemeContextType["colors"]) => {
   return StyleSheet.create({
     background: {
       flex: 1,
@@ -166,7 +167,7 @@ const style = () => {
       width: 40,
       marginLeft: 25,
       padding: 8,
-      backgroundColor: colors.lightGray,
+      backgroundColor: colors.surface,
       borderRadius: 40,
       justifyContent: "center",
       alignItems: "center",
@@ -176,18 +177,19 @@ const style = () => {
       flex: 1,
     },
     bottomContainer: {
-      backgroundColor: "white",
+      backgroundColor: colors.background,
       borderTopLeftRadius: 30,
       borderTopRightRadius: 30,
       paddingHorizontal: 20,
       paddingVertical: 30,
+      paddingBottom: 50,
       alignItems: "center",
-      height: 570,
+      // height: 500,
     },
     title: {
       fontSize: 24,
       fontFamily: FONTS.bold,
-      color: colors.black,
+      color: colors.text,
       marginBottom: 20,
     },
     signInButton: {
@@ -196,7 +198,7 @@ const style = () => {
       borderRadius: 10,
       paddingVertical: 14,
       alignItems: "center",
-      marginTop: 16,
+      marginTop: 15,
     },
     signInButtonText: {
       color: colors.white,
@@ -212,19 +214,19 @@ const style = () => {
     line: {
       flex: 1,
       height: 1,
-      backgroundColor: colors.lightGray,
+      backgroundColor: colors.border,
     },
     googleButton: {
       width: "100%",
     },
     orText: {
       marginHorizontal: 8,
-      color: colors.gray,
+      color: colors.textSecondary,
       fontFamily: FONTS.medium,
       fontSize: 14,
     },
     loginText: {
-      color: colors.gray,
+      color: colors.textSecondary,
       fontSize: 14,
       fontFamily: FONTS.medium,
       textAlign: "center",
@@ -242,6 +244,12 @@ const style = () => {
       color: colors.primary,
       fontFamily: FONTS.medium,
       fontSize: 14,
+    },
+    keyboardAvoidingView: {
+      flex: 1,
+    },
+    spacer: {
+      flex: 1,
     },
   });
 };

@@ -1,19 +1,21 @@
+import { useTheme } from "@/context/ThemeContext";
+import { CustomTabBarProps, ThemeContextType } from "@/interface/type";
 import { Ionicons } from "@expo/vector-icons";
-import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import React, { JSX } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import CustomText from "./CustomText";
 
-interface CustomTabBarProps extends BottomTabBarProps {}
-
 const CustomTabBar: React.FC<CustomTabBarProps> = ({ state, descriptors, navigation }) => {
+  const { colors } = useTheme();
+  const styles = getStyles(colors);
+
   const getTabIcon = (routeName: string, focused: boolean): JSX.Element => {
-    const iconColor = focused ? "#000000" : "#999999";
+    const iconColor = focused ? colors.text : colors.textSecondary;
     const iconSize = 24;
 
     switch (routeName) {
       case "chat":
-        return <Ionicons name="home-outline" size={iconSize} color={iconColor} />;
+        return <Ionicons name="chatbox-outline" size={iconSize} color={iconColor} />;
       case "call":
         return <Ionicons name="call-outline" size={iconSize} color={iconColor} />;
       case "profile":
@@ -26,7 +28,7 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({ state, descriptors, navigat
   const getTabLabel = (routeName: string): string => {
     switch (routeName) {
       case "chat":
-        return "Home";
+        return "Chat";
       case "call":
         return "Call";
       case "profile":
@@ -66,7 +68,12 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({ state, descriptors, navigat
               style={styles.tabItem}
             >
               {getTabIcon(route.name, isFocused)}
-              <CustomText style={[styles.tabLabel, { color: isFocused ? "#000000" : "#999999" }]}>
+              <CustomText
+                style={[
+                  styles.tabLabel,
+                  isFocused ? styles.tabLabelFocused : styles.tabLabelUnfocused,
+                ]}
+              >
                 {label}
               </CustomText>
             </Pressable>
@@ -77,38 +84,50 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({ state, descriptors, navigat
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  tabContainer: {
-    flexDirection: "row",
-    backgroundColor: "#FFFFFF",
-    borderRadius: 30,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
+const getStyles = (colors: ThemeContextType["colors"]) => {
+  return StyleSheet.create({
+    container: {
+      justifyContent: "center",
+      alignItems: "center",
+      position: "absolute",
+      bottom: 0,
+      width: "100%",
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 5,
-    minWidth: "100%",
-  },
-  tabItem: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 5,
-  },
-  tabLabel: {
-    fontSize: 12,
-    fontWeight: "500",
-    marginTop: 4,
-  },
-});
+    tabContainer: {
+      flexDirection: "row",
+      backgroundColor: colors.surface,
+      borderTopLeftRadius: 30,
+      borderTopRightRadius: 30,
+      paddingVertical: 15,
+      paddingHorizontal: 20,
+      shadowColor: colors.text,
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.1,
+      shadowRadius: 10,
+      elevation: 5,
+      minWidth: "100%",
+    },
+    tabItem: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      paddingVertical: 5,
+    },
+    tabLabel: {
+      fontSize: 12,
+      fontWeight: "500",
+      marginTop: 4,
+    },
+    tabLabelFocused: {
+      color: colors.text,
+    },
+    tabLabelUnfocused: {
+      color: colors.textSecondary,
+    },
+  });
+};
 
 export default CustomTabBar;

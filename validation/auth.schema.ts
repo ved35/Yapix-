@@ -1,3 +1,9 @@
+import {
+  OTPFormData,
+  ResetPasswordFormData,
+  SignInFormData,
+  SignUpFormData,
+} from "@/interface/type";
 import { z } from "zod";
 
 export const signUpSchema = z
@@ -50,7 +56,5 @@ export const resetPasswordSchema = z
     path: ["confirmPassword"],
   });
 
-export type SignUpFormData = z.infer<typeof signUpSchema>;
-export type SignInFormData = z.infer<typeof signInSchema>;
-export type OTPFormData = z.infer<typeof otpSchema>;
-export type ResetPasswordFormData = z.infer<typeof resetPasswordSchema>;
+// Export the types for backward compatibility
+export type { OTPFormData, ResetPasswordFormData, SignInFormData, SignUpFormData };

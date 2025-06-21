@@ -15,6 +15,7 @@ import { Image, ScrollView, StyleSheet, View } from "react-native";
 const GetStarted = () => {
   const styles = style();
   const { t } = useTranslation();
+  const { theme } = useTheme();
 
   useEffect(() => {
     const checkToken = async () => {
@@ -29,7 +30,13 @@ const GetStarted = () => {
 
   return (
     <View style={styles.container}>
-      <GradientView colors={["#EDF2FF", "#E7F9F4"]} style={styles.gradient}>
+      <GradientView
+        colors={[
+          theme === "dark" ? "#212529" : "#EDF2FF",
+          theme === "dark" ? "#343a40" : "#E7F9F4",
+        ]}
+        style={styles.gradient}
+      >
         <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}

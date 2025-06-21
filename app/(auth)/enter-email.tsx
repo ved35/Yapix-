@@ -65,7 +65,7 @@ const EnterEmail = () => {
         autoCorrect={false}
         error={errors.email}
       />
-      <View style={{ flex: 1 }} />
+      <View style={styles.spacer} />
       <CustomButton
         text={t("auth.sendotp")}
         onPress={onPress}
@@ -85,6 +85,7 @@ const style = () => {
     container: {
       flex: 1,
       padding: 20,
+      paddingBottom: 50,
       justifyContent: "space-between",
     },
     button: {
@@ -96,6 +97,9 @@ const style = () => {
     buttonText: {
       fontSize: 16,
       fontFamily: FONTS.medium,
+    },
+    spacer: {
+      flex: 1,
     },
   });
 };

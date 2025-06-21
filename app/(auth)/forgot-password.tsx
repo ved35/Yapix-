@@ -70,7 +70,7 @@ const ForgotPassword = () => {
 
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1 }}
+      style={styles.keyboardAvoidingView}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 110}
     >
@@ -96,7 +96,7 @@ const ForgotPassword = () => {
               error={errors.confirmPassword}
             />
           </View>
-          <View style={{ flex: 1 }} />
+          <View style={styles.spacer} />
 
           <CustomButton
             text={t("auth.resetPassword")}
@@ -153,6 +153,12 @@ const style = () => {
       color: colors.white,
       fontSize: 16,
       fontFamily: FONTS.bold,
+    },
+    keyboardAvoidingView: {
+      flex: 1,
+    },
+    spacer: {
+      flex: 1,
     },
   });
 };
