@@ -4,7 +4,8 @@
     "settings": "સેટિંગ્સ",
     "language": "ભાષા",
     "or": "અથવા",
-    "continueWith": "સાથે ચાલુ રાખો"
+    "continueWith": "સાથે ચાલુ રાખો",
+    "save": "સેવ કરો"
   },
   "auth": {
     "signIn": "સાઇન ઇન",
@@ -44,6 +45,12 @@
     "title": "પ્રોફાઇલ",
     "editProfile": "પ્રોફાઇલ એડિટ કરો",
     "changePassword": "પાસવર્ડ બદલો",
+    "currentPassword": "વર્તમાન પાસવર્ડ",
+    "enterCurrentPassword": "વર્તમાન પાસવર્ડ દાખલ કરો",
+    "newPassword": "નવો પાસવર્ડ",
+    "enterNewPassword": "નવો પાસવર્ડ દાખલ કરો",
+    "confirmNewPassword": "નવા પાસવર્ડની પુષ્ટિ કરો",
+    "enterConfirmNewPassword": "નવા પાસવર્ડની પુષ્ટિ કરો",
     "qrCode": "QR કોડ",
     "notification": "સૂચના",
     "subscription": "સબ્સ્ક્રિપ્શન",

@@ -10,8 +10,12 @@ export const ROUTE = {
   "auth.enterEmail": "/(auth)/enter-email",
   "auth.forgotPassword": "/(auth)/forgot-password",
 
-  //chat
+  //tabs
   "tabs.chat": "/(tabs)/chat",
   "tabs.profile": "/(tabs)/profile",
   "tabs.call": "/(tabs)/call",
+
+  //profile
+  "profile.editProfile": "/profile/edit-profile",
+  "profile.changePassword": "/profile/change-password",
 } as const satisfies Record<string, Route>;

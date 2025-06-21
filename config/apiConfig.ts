@@ -1,10 +1,11 @@
 export const apiConfig = {
   //live
   BASE_URL: "https://echomeet-3wyb.onrender.com",
+  SOCKET_URL: "https://echomeet-3wyb.onrender.com",
   LIVE_URL: "https://api.example.com",
 
   // Request configuration
-  TIMEOUT: 10000,
+  TIMEOUT: 20000,
   RETRY: 3,
 
   // API endpoints
@@ -18,9 +19,9 @@ export const apiConfig = {
       SEND_FORGOT_PASSWORD_OTP: "/auth/sendForgotPasswordOtp",
       GOOGLE_LOGIN: "/auth/googleLogin",
     },
-    USER: {
-      PROFILE: "/user/profile",
-      SETTINGS: "/user/settings",
+    PROFILE: {
+      PROFILE: "/profile/editProfile",
+      CHANGE_PASSWORD: "/profile/changePassword",
     },
   },
 

@@ -4,7 +4,8 @@
     "settings": "Settings",
     "language": "Language",
     "or": "or",
-    "continueWith": "continue with"
+    "continueWith": "continue with",
+    "save": "Save"
   },
   "auth": {
     "signIn": "Sign In",
@@ -54,6 +55,12 @@
     "title": "Profile",
     "editProfile": "Edit Profile",
     "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "enterCurrentPassword": "Enter Current Password",
+    "newPassword": "New Password",
+    "enterNewPassword": "Enter New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "enterConfirmNewPassword": "Confirm New Password",
     "qrCode": "QR Code",
     "notification": "Notification",
     "subscription": "Subscription",

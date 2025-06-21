@@ -7,6 +7,7 @@ import { Pressable, StyleSheet } from "react-native";
 
 export default function AuthLayout() {
   const styles = style();
+  const { theme } = useTheme();
 
   return (
     <Stack
@@ -27,7 +28,7 @@ export default function AuthLayout() {
             style={styles.backButton}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Ionicons name="chevron-back" size={22} color="#000" />
+            <Ionicons name="chevron-back" size={22} color={theme === "dark" ? "#fff" : "#000"} />
           </Pressable>
         ),
       }}

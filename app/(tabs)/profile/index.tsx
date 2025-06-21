@@ -2,6 +2,7 @@ import { Icons } from "@/assets/assets";
 import CustomHeader from "@/components/CustomHeader";
 import CustomImageLoadder from "@/components/CustomImageLoadder";
 import CustomText from "@/components/CustomText";
+import { ROUTE } from "@/config/routes";
 import { FONTS } from "@/constants/theme";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
@@ -100,7 +101,7 @@ export default function Profile() {
         text: t("profile.yes"),
         onPress: async () => {
           const res = await logoutMutation.mutateAsync();
-
+          console.log("logout : ", res);
           if (res?.success) {
             Storage.removeItem("token");
             Storage.removeItem("refreshToken");
@@ -121,11 +122,11 @@ export default function Profile() {
     switch (item.id) {
       case 1: // Edit Profile
         console.log("Navigate to Edit Profile");
-        // router.push("/edit-profile");
+        router.push(ROUTE["profile.editProfile"]);
         break;
       case 2: // Change Password
         console.log("Navigate to Change Password");
-        // router.push("/change-password");
+        router.push(ROUTE["profile.changePassword"]);
         break;
       case 3: // QR Code
         console.log("Navigate to QR Code");
@@ -225,8 +226,8 @@ export default function Profile() {
               borderRadius={100}
             />
             <View style={styles.profileTextContainer}>
-              <CustomText style={styles.profileName}>{user?.username}</CustomText>
-              <CustomText style={styles.profileEmail}>{user?.email}</CustomText>
+              <CustomText style={styles.profileName}>{user?.name}</CustomText>
+              <CustomText style={styles.profileEmail}>@{user?.username}</CustomText>
             </View>
           </View>
           <Pressable style={styles.logoutButton} onPress={handleLogOut}>
@@ -246,6 +247,7 @@ export default function Profile() {
           style={styles.settingsList}
           contentContainerStyle={styles.settingsListContent}
           bounces={false}
+          ListFooterComponent={() => <View style={styles.footer} />}
         />
       </View>
     </SafeAreaView>
@@ -351,6 +353,10 @@ const getStyles = (colors: ThemeContextType["colors"], language: string) => {
       fontSize: 14,
       fontFamily: FONTS.medium,
       color: colors.textSecondary,
+    },
+    footer: {
+      height: 50,
+      width: "100%",
     },
   });
 };

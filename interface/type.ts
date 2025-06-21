@@ -20,6 +20,11 @@ export interface LoginCredentials {
   password: string;
 }
 
+export interface editProfileData {
+  username: string;
+  name: string;
+}
+
 export interface RegisterData {
   email: string;
   password: string;
@@ -61,6 +66,8 @@ export interface User {
   id: string;
   email: string;
   username: string;
+  profile_picture: string;
+  name: string;
 }
 
 export interface AuthState {
@@ -199,3 +206,21 @@ export type ResetPasswordFormData = {
   password: string;
   confirmPassword: string;
 };
+
+export interface changePasswordData {
+  newPassword: string;
+  currentPassword: string;
+}
+
+export type ChangePasswordFormData = {
+  currentPassword: string;
+  password: string;
+  confirmPassword: string;
+};
+
+export interface EditFormData {
+  username: string;
+  name: string;
+  profile_picture: string;
+  email: string;
+}

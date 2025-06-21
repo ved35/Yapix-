@@ -1,5 +1,4 @@
 import { apiConfig } from "@/config/apiConfig";
-import Storage from "@/hooks/Storage";
 import {
   GoogleData,
   LoginCredentials,
@@ -8,6 +7,7 @@ import {
   VerifyOTPData,
 } from "@/interface/type";
 import { AxiosResponse } from "axios";
+import { router } from "expo-router";
 import { showMessage } from "react-native-flash-message";
 import api from "../axios";
 
@@ -24,6 +24,9 @@ const handleSuccess = (response: AxiosResponse["data"]) => {
       message: "Fail",
       description: response?.data?.message || response?.message,
     });
+    if (response?.data?.statusCode === 403 && response?.data?.message === "Invalid token.") {
+      router.replace("/");
+    }
   }
   return response;
 };
@@ -70,7 +73,6 @@ export const authApiService = {
   logout: async () => {
     try {
       const response = (await api.post(apiConfig.ENDPOINTS.AUTH.LOGOUT)) as any;
-      Storage.removeItem("token");
       return handleSuccess(response);
     } catch (error) {
       return handleError(error);

@@ -12,6 +12,7 @@ import CustomText from "./CustomText";
 
 const GoogleSignInButton = ({ onPress, style: containerStyle }: GoogleSignInButtonProps) => {
   const styles = getStyles();
+  const { theme } = useTheme();
 
   const googleMutation = useGoogleMutation();
 
@@ -80,7 +81,7 @@ const GoogleSignInButton = ({ onPress, style: containerStyle }: GoogleSignInButt
       disabled={loading}
     >
       {loading ? (
-        <ActivityIndicator size="small" color="#222" />
+        <ActivityIndicator size="small" color={theme === "dark" ? "#fff" : "#222"} />
       ) : (
         <>
           <Image source={Icons.google} style={styles.googleIcon} />
