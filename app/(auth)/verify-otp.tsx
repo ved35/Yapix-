@@ -4,15 +4,15 @@ import OTPInput from "@/components/OTPInput";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
 import {
-  useSendForgotPasswordOTPMutation,
-  useVerifyOTPMutation,
+    useSendForgotPasswordOTPMutation,
+    useVerifyOTPMutation,
 } from "@/hooks/mutations/authMutations";
 import { VerifyOTPData } from "@/interface/type";
 import { otpSchema } from "@/validation/auth.schema";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { AppState, StyleSheet, TouchableOpacity, View } from "react-native";
+import { AppState, Pressable, StyleSheet, View } from "react-native";
 import { showMessage } from "react-native-flash-message";
 
 const COUNTDOWN_DURATION = 120; // 60 seconds countdown
@@ -145,7 +145,7 @@ const VerifyOTP = () => {
         <OTPInput onOTPComplete={handleOTPChange} />
         {error && <CustomText style={[styles.errorText, styles.errorTextRed]}>{error}</CustomText>}
         <View style={styles.resendContainer}>
-          <TouchableOpacity
+          <Pressable
             onPress={handleResendOTP}
             disabled={countdown > 0 || isResending}
             style={[
@@ -161,7 +161,7 @@ const VerifyOTP = () => {
             >
               {countdown > 0 ? `${t("auth.resendOTP")} (${countdown}s)` : t("auth.resendOTP")}
             </CustomText>
-          </TouchableOpacity>
+          </Pressable>
         </View>
       </View>
       <View style={styles.spacer} />

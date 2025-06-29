@@ -26,7 +26,6 @@ const GoogleSignInButton = ({ onPress, style: containerStyle }: GoogleSignInButt
       await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
 
       const userInfo = await GoogleSignin.signIn();
-      console.log("userinfo:", userInfo);
       // const { idToken } = await GoogleSignin.getTokens();
 
       if (userInfo.type === "success") {
@@ -35,7 +34,7 @@ const GoogleSignInButton = ({ onPress, style: containerStyle }: GoogleSignInButt
           name: userInfo.data?.user.name as string,
           profile_pic: userInfo.data?.user.photo as string,
         };
-
+        console.log("data:",data)
         let res = await googleMutation.mutateAsync(data);
 
         if (res?.success) {

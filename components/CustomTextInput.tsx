@@ -3,7 +3,7 @@ import { useTheme } from "@/context/ThemeContext";
 import { CustomTextInputProps, ThemeContextType } from "@/interface/type";
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import CustomText from "./CustomText";
 
 const CustomTextInput: React.FC<CustomTextInputProps> = ({
@@ -35,7 +35,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
           {...props}
         />
         {password && (
-          <TouchableOpacity
+          <Pressable
             style={styles.eyeIcon}
             onPress={() => setShowPassword((prev) => !prev)}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
@@ -45,7 +45,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
               size={20}
               color={colors.textSecondary}
             />
-          </TouchableOpacity>
+          </Pressable>
         )}
       </View>
       {error && (

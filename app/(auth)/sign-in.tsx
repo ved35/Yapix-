@@ -80,73 +80,75 @@ const SignIn = () => {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.keyboardAvoidingView}
-    >
-      <ImageBackground source={Images.loginBackground} style={styles.background}>
-        <Pressable
-          onPress={() => router.back()}
-          style={styles.backButton}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-        >
-          <Ionicons name="chevron-back" size={22} color={colors.text} />
-        </Pressable>
-        <View style={styles.container}>
-          <View style={styles.topSection} />
-          <View style={styles.bottomContainer}>
-            <CustomText style={styles.title}>{t("auth.signIn")}</CustomText>
-            <CustomTextInput
-              label={t("auth.username")}
-              placeholder={t("auth.enterUsername")}
-              value={formData.username}
-              onChangeText={(value) => handleChange("username", value)}
-              autoCapitalize="none"
-              autoCorrect={false}
-              error={errors.username}
-            />
-            <CustomTextInput
-              label={t("auth.password")}
-              placeholder={t("auth.enterPassword")}
-              value={formData.password}
-              onChangeText={(value) => handleChange("password", value)}
-              password
-              error={errors.password}
-            />
-            <Pressable
-              onPress={() => router.navigate("/(auth)/enter-email")}
-              style={styles.forgotPasswordContainer}
-            >
-              <CustomText style={styles.forgotPasswordText}>{t("auth.forgotPassword")}</CustomText>
-            </Pressable>
-            <View style={styles.spacer} />
-            <CustomButton
-              text={t("auth.signIn")}
-              onPress={handleSignIn}
-              style={styles.signInButton}
-              textStyle={styles.signInButtonText}
-              loading={loginMutation.isPending}
-            />
-
-            <View style={styles.orContainer}>
-              <View style={styles.line} />
-              <CustomText style={styles.orText}>{t("common.or")}</CustomText>
-              <View style={styles.line} />
-            </View>
-            <GoogleSignInButton style={styles.googleButton} />
-            <CustomText style={styles.loginText}>
-              {t("auth.dontHaveAccount")}{" "}
-              <CustomText
-                style={styles.loginLink}
-                onPress={() => router.navigate("/(auth)/sign-up")}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.keyboardAvoidingView}
+      >
+        <ImageBackground source={Images.loginBackground} style={styles.background}>
+          <Pressable
+            onPress={() => router.back()}
+            style={styles.backButton}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            <Ionicons name="chevron-back" size={22} color={colors.text} />
+          </Pressable>
+          <View style={styles.container}>
+            <View style={styles.topSection} />
+            <View style={styles.bottomContainer}>
+              <CustomText style={styles.title}>{t("auth.signIn")}</CustomText>
+              <CustomTextInput
+                label={t("auth.username")}
+                placeholder={t("auth.enterUsername")}
+                value={formData.username}
+                onChangeText={(value) => handleChange("username", value)}
+                autoCapitalize="none"
+                autoCorrect={false}
+                error={errors.username}
+              />
+              <CustomTextInput
+                label={t("auth.password")}
+                placeholder={t("auth.enterPassword")}
+                value={formData.password}
+                onChangeText={(value) => handleChange("password", value)}
+                password
+                error={errors.password}
+              />
+              <Pressable
+                onPress={() => router.navigate("/(auth)/enter-email")}
+                style={styles.forgotPasswordContainer}
               >
-                {t("auth.signUp")}
+                <CustomText style={styles.forgotPasswordText}>
+                  {t("auth.forgotPassword")}
+                </CustomText>
+              </Pressable>
+              <View style={styles.spacer} />
+              <CustomButton
+                text={t("auth.signIn")}
+                onPress={handleSignIn}
+                style={styles.signInButton}
+                textStyle={styles.signInButtonText}
+                loading={loginMutation.isPending}
+              />
+
+              <View style={styles.orContainer}>
+                <View style={styles.line} />
+                <CustomText style={styles.orText}>{t("common.or")}</CustomText>
+                <View style={styles.line} />
+              </View>
+              <GoogleSignInButton style={styles.googleButton} />
+              <CustomText style={styles.loginText}>
+                {t("auth.dontHaveAccount")}{" "}
+                <CustomText
+                  style={styles.loginLink}
+                  onPress={() => router.navigate("/(auth)/sign-up")}
+                >
+                  {t("auth.signUp")}
+                </CustomText>
               </CustomText>
-            </CustomText>
+            </View>
           </View>
-        </View>
-      </ImageBackground>
-    </KeyboardAvoidingView>
+        </ImageBackground>
+      </KeyboardAvoidingView>
   );
 };
 

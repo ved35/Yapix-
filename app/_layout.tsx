@@ -10,9 +10,9 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 import { StatusBar, StyleSheet, View } from "react-native";
 import FlashMessage from "react-native-flash-message";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
 import "../config/i18n";
-
 // Configure Google Sign-In
 GoogleSignin.configure({
   webClientId: "17253970169-ls73vqa88vvtbssr8n0peljgqtr1akpo.apps.googleusercontent.com",
@@ -47,16 +47,18 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <LanguageProvider>
-          <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
-            <Slot />
-            <FlashMessage
-              position="top"
-              duration={2500}
-              titleStyle={styles.flashTextStyle}
-              textStyle={[styles.flashTextStyle, { fontSize: 14 }]}
-              statusBarHeight={(StatusBar.currentHeight || 25) - 5}
-            />
-          </View>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
+              <Slot />
+              <FlashMessage
+                position="top"
+                duration={2500}
+                titleStyle={styles.flashTextStyle}
+                textStyle={[styles.flashTextStyle, { fontSize: 14 }]}
+                statusBarHeight={(StatusBar.currentHeight || 25) - 5}
+              />
+            </View>
+          </GestureHandlerRootView>
         </LanguageProvider>
       </ThemeProvider>
     </QueryClientProvider>

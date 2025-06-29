@@ -18,4 +18,8 @@ export const ROUTE = {
   //profile
   "profile.editProfile": "/profile/edit-profile",
   "profile.changePassword": "/profile/change-password",
+
+  //chat
+
+  "chat.chatBox": "/chat/chat-box"
 } as const satisfies Record<string, Route>;

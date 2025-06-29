@@ -127,7 +127,7 @@ export interface CustomImageLoaderProps {
   style: ImageStyle;
   source: ImageSourcePropType | null;
   resizeMode: "contain" | "cover" | "stretch" | "repeat" | "center";
-  borderRadius: number;
+  borderRadius?: number;
   errorImage?: ImageSourcePropType;
 }
 
