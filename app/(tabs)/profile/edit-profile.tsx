@@ -10,7 +10,6 @@ import { editProfileSchema } from "@/validation/auth.schema";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import { Image, Pressable, StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { ZodError } from "zod";
 
 const EditProfile = () => {
@@ -72,7 +71,7 @@ const EditProfile = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.contentContainer}>
         <CustomHeader title="Edit Profile" />
         <View style={styles.profilePicContainer}>
@@ -116,7 +115,7 @@ const EditProfile = () => {
           loading={editProfileMutation.isPending}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

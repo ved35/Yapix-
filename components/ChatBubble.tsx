@@ -1,11 +1,10 @@
-import { Icons } from "@/assets/assets";
 import { apiConfig } from "@/config/apiConfig";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
+import { Ionicons } from "@expo/vector-icons";
 import React, { memo, Ref, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  Image,
   Pressable,
   StyleSheet,
   TextInput,
@@ -111,7 +110,7 @@ const ChatBubble = ({
   };
 
   const renderLeftAction = () => (
-    <Image source={Icons.edit} style={styles.reply} resizeMode="contain" tintColor={colors.gray} />
+    <Ionicons name="arrow-undo-outline" size={24} color={colors.gray} />
   );
 
   const handleSwipeEnd = (e: HandlerStateChangeEvent | any) => {
@@ -182,7 +181,7 @@ const ChatBubble = ({
                   {isUser ? "You" : chat?.userId?.fullName}
                 </CustomText>
                 {chat?.messageId?.attachment ? (
-                  <View>
+                  <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                     <CustomText numberOfLines={10} style={[styles.replyText, { marginBottom: 10 }]}>
                       {chat?.messageId?.message || "Image"}
                     </CustomText>
@@ -254,11 +253,7 @@ const ChatBubble = ({
               {localTime(chat?.createdAt) || '--'}
             </Animated.Text>
             {isUser && (
-              <Image
-                style={styles.tick}
-                resizeMode="contain"
-                source={isRead ? Icons.block : Icons.block}
-              />
+              (isRead || 1 == 1) ? <Ionicons name="checkmark-done" size={24} color={isRead ? colors.primary : colors.gray} /> : <Ionicons />
             )}
           </View>
         </Animated.View>
@@ -332,6 +327,7 @@ const Style = () => {
     },
     replyText: {
       width: "60%",
+      flexGrow: 1,
       fontSize: 12,
       color: colors.black,
       fontFamily: FONTS.semiBold,

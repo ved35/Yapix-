@@ -23,11 +23,12 @@
 {
   "data": [
     {
-      "id": "user_123",
-      "fullName": "John Doe",
-      "avatar": "/uploads/avatar.jpg",
-      "isOnline": true,
-      "lastSeen": "2024-01-16T10:30:00.000Z"
+      "id": 1,
+      "name": "Aarav Mehta",
+      "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
+      "time": "10:24 AM",
+      "message": "Hey, what's up?",
+      "unreadCount": 2
     }
   ]
 }
@@ -63,7 +64,7 @@
 {
   "token": "jwt_token_here",
   "userId": "target_user_id",
-  "limit": 20,
+  "limit": 30,
   "page": 1
 }
 ```
@@ -164,7 +165,6 @@
 {
   "token": "jwt_token_here",
   "userid": "target_user_id",
-  "chatId": "chat_room_id"
 }
 ```
 
@@ -174,7 +174,6 @@
 {
   "token": "jwt_token_here",
   "userid": "target_user_id",
-  "chatId": "chat_room_id"
 }
 ```
 
@@ -182,9 +181,7 @@
 **What Backend Should Send:**
 ```json
 {
-  "chatId": "chat_room_id",
   "userId": "user_123",
-  "fullName": "John Doe",
   "isTyping": true
 }
 ```

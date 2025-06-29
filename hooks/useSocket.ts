@@ -33,6 +33,7 @@ export const useSocket = ({
     (newSocket: Socket) => {
       if (flag === "list") {
         newSocket.on("receiver-user-list", (res: any) => {
+          console.log("res:",JSON.stringify(res))
           const data = res?.data;
           if (data) {
             setUserList(data || []);
@@ -66,10 +67,12 @@ export const useSocket = ({
       }
 
       newSocket.on("dissconnected", (e) => {
+        console.log("socket dissconnected",e?.message)
         setIsConnected(false);
       });
 
       newSocket.on("connect_error", (e) => {
+        console.log("socket error:",e?.message)
         setIsConnected(false);
       });
     },
@@ -95,6 +98,7 @@ export const useSocket = ({
   }, [manageGetMessagePage.currentPage, fetchMessages]);
 
   const connect = useCallback(async () => {
+    console.log("here--->",socketRef)
     if (socketRef.current) return;
 
     try {
@@ -104,9 +108,12 @@ export const useSocket = ({
         reconnectionDelay: 1000,
         reconnectionAttempts: 5,
         transports: ["websocket"],
+        auth: { token },
       });
 
       newSocket.on("connect", () => {
+
+        console.log("socket connection successfull", newSocket.id)
         socketRef.current = newSocket;
         setIsConnected(true);
 

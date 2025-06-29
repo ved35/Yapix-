@@ -1,4 +1,3 @@
-import { Icons } from "@/assets/assets";
 import { apiConfig } from "@/config/apiConfig";
 import { isAndroid, SCREEN_WIDTH } from "@/constants/device";
 import { FONTS } from "@/constants/theme";
@@ -8,7 +7,6 @@ import React, { memo, Ref } from "react";
 import { useTranslation } from "react-i18next";
 import {
   ActivityIndicator,
-  Image,
   Pressable,
   StyleSheet,
   TextInput,
@@ -76,7 +74,7 @@ const ChatInput = ({
 
               <View
                 style={[
-                  // styles.header,
+                  styles.header,
                   {
                     marginTop: 0,
                     width: replyMessage?.image?.uri ? "85%" : "100%",
@@ -107,7 +105,7 @@ const ChatInput = ({
                     });
                   }}
                 >
-                  <Image resizeMode="contain" source={Icons.block} style={styles.closeIcon} />
+                  <Ionicons name="close" size={25} color={colors.black} />
                 </Pressable>
               </View>
             </View>
@@ -137,7 +135,7 @@ const ChatInput = ({
             </View>
           ) : (
             <Pressable disabled={isLoading} onPress={() => setMessage(message)}>
-              <Ionicons name="send-outline" color={colors.primary} style={styles.messageIcon} />
+              <Ionicons name="send-outline" color={colors.primary} size={22} />
             </Pressable>
           )}
         </View>
@@ -153,29 +151,29 @@ const Style = () => {
 
   return StyleSheet.create({
     container: {
-      paddingVertical: 15,
+      paddingVertical: 10,
       alignItems: "center",
       paddingHorizontal: 10,
       justifyContent: "center",
-      paddingBottom: isAndroid ? 5 : 30,
+      paddingBottom: isAndroid ? 10 : 20,
       backgroundColor: colors.background,
     },
     main: {
       width: "100%",
-      minHeight: 55,
-      maxHeight: 150,
       borderWidth: 1,
       borderRadius: 7,
       alignItems: "center",
       flexDirection: "row",
       borderColor: colors.border,
       justifyContent: "space-between",
+      minHeight: 50,
+      paddingVertical: 5,
     },
     bottomView: {
-      marginRight: 10,
+      paddingHorizontal: 10,
       alignItems: "center",
-      flexDirection: "row",
       justifyContent: "center",
+      minWidth: 50,
     },
     messageIconView: {
       width: 40,
@@ -187,15 +185,24 @@ const Style = () => {
       width: 22,
       height: 22,
     },
+    header: {
+      width:'100%',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      flexDirection: 'row'
+    },
     textInputView: {
-      left: -2,
-      width: "65%",
-      bottom: isAndroid ? 0 : 3,
+      flex: 1,
+      paddingHorizontal: 10,
     },
     textInput: {
       fontFamily: FONTS.medium,
       fontSize: 16,
       color: colors.text,
+      paddingVertical: 10,
+      paddingHorizontal: 5,
+      minHeight: 40,
+      maxHeight: 100,
     },
     sendBTN: {
       width: 43,
@@ -210,13 +217,15 @@ const Style = () => {
       right: 0,
       zIndex: 999,
       borderWidth: 1,
-      borderRadius: 4,
+      borderRadius: 10,
       alignItems: "center",
       position: "absolute",
       flexDirection: "row",
-      bottom: SCREEN_WIDTH * 0.07,
+      bottom: SCREEN_WIDTH * 0.12,
       borderColor: colors.border,
       backgroundColor: colors.background,
+      width: '100%',
+      paddingHorizontal: 20,
     },
     nameText: {
       fontSize: 13,
@@ -236,7 +245,6 @@ const Style = () => {
       borderRadius: 5,
     },
     nameClose: {
-      width: "100%",
       alignItems: "center",
       flexDirection: "row",
     },

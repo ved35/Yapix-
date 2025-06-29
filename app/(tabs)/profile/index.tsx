@@ -15,7 +15,7 @@ import { router } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, Alert, Pressable, StyleSheet, Switch, View } from "react-native";
 import Animated from "react-native-reanimated";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Profile() {
   const { colors, theme, toggleTheme } = useTheme();
@@ -26,6 +26,8 @@ export default function Profile() {
   const user = useAuthStore((state) => state.user);
   const setuser = useAuthStore((state) => state.setUser);
   const logoutMutation = useLogoutMutation();
+
+  const insent = useSafeAreaInsets();
 
   const settingsItems = [
     {
@@ -212,7 +214,7 @@ export default function Profile() {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={[styles.container,{paddingTop: insent.top}]}>
       <View style={styles.contentContainer}>
         <CustomHeader title={t("profile.title")} style={styles.header} />
         <View style={styles.profileSection}>
@@ -250,7 +252,7 @@ export default function Profile() {
           ListFooterComponent={() => <View style={styles.footer} />}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 

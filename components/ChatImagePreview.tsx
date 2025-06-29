@@ -46,7 +46,7 @@ const ChatImagePreview = ({
         }
     >
         <Pressable hitSlop={20} style={styles.closeBtn} onPress={()=>setIsVisiable(false)}>
-            <Ionicons name='close' style={styles.closeicon} color={colors.primary} />
+            <Ionicons name='close' size={25} color={colors.primary} />
         </Pressable>
         {
             isLoading && (
@@ -64,7 +64,7 @@ const ChatImagePreview = ({
                 source={{uri: `${apiConfig.BASE_URL}${url}`}}
             />
             <Pressable hitSlop={20} style={styles.download} onPress={()=>setIsVisiable(false)}>
-                <Ionicons name='download' style={styles.closeicon} color={colors.primary} />
+                <Ionicons name='download-outline' size={24} color={colors.primary} />
             </Pressable>
         </View>
     </Modal>
@@ -81,7 +81,14 @@ const Style = () => {
         closeBtn: {
             top: 30,
             right: 0,
-            zIndex: 99999
+            zIndex: 99999,
+            backgroundColor: colors.white,
+            height: 50,
+            width: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 50,
+            position: 'absolute'
         },
         closeicon: {
             width: 30,
@@ -119,7 +126,7 @@ const Style = () => {
         download: {
             right: 10,
             bottom: 10,
-            padding: 5,
+            padding: 10,
             zIndex: 999,
             borderRadius: 50,
             alignItems: 'center',

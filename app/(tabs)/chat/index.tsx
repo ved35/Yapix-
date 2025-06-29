@@ -5,8 +5,10 @@ import { ROUTE } from "@/config/routes";
 import { contact } from "@/constants/localData";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
+import { useSocket } from "@/hooks/useSocket";
+import useAuthStore from "@/store/authStore";
 import { router } from "expo-router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StatusBar, StyleSheet, View } from "react-native";
 import Animated from "react-native-reanimated";
@@ -16,6 +18,20 @@ export default function Chat() {
   const styles = getStyles();
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
+
+  const user = useAuthStore(state => state.user)
+
+  const {connect, socket } = useSocket({
+    flag: "list", 
+    userId: user?.id || "",
+    manageGetMessagePage: { currentPage: 1 }
+  });
+
+  useEffect(()=>{
+    if(socket){
+      connect();
+    }
+  },[])
 
   const handleContactItem = (item: any) => {
     router.navigate({pathname: ROUTE["chat.chatBox"], params:item});

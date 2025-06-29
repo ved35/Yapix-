@@ -4,6 +4,10 @@ export const apiConfig = {
   SOCKET_URL: "https://echomeet-3wyb.onrender.com",
   LIVE_URL: "https://api.example.com",
 
+  //local
+  // BASE_URL: "http://192.168.31.162:5000",
+  // SOCKET_URL: "http://192.168.31.162:5000/",
+
   // Request configuration
   TIMEOUT: 20000,
   RETRY: 3,

@@ -9,7 +9,6 @@ import { router } from "expo-router";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { ZodError } from "zod";
 
 const ChangePassword = () => {
@@ -64,7 +63,7 @@ const ChangePassword = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.contentContainer}>
         <CustomHeader title={t("profile.changePassword")} />
         <View style={{ flex: 1, marginTop: 30 }}>
@@ -109,7 +108,7 @@ const ChangePassword = () => {
           loading={changePasswordMutation.isPending}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

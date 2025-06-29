@@ -15,10 +15,11 @@ import {
   FlatList,
   Keyboard,
   KeyboardAvoidingView,
+  Platform,
   Pressable,
   StyleSheet,
   TextInput,
-  View,
+  View
 } from "react-native";
 import { showMessage } from "react-native-flash-message";
 import Animated, {
@@ -26,7 +27,6 @@ import Animated, {
   runOnJS,
   useAnimatedScrollHandler
 } from "react-native-reanimated";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 interface PageManagement {
   limit: number;
@@ -770,153 +770,152 @@ const ChatBox = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
-      <KeyboardAvoidingView
-        style={{ flex: 1, alignSelf: "center", backgroundColor: colors.background }}
-        behavior="padding"
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      {/* Header */}
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          width: "100%",
+          marginVertical: 20,
+          paddingHorizontal: 20,
+          backgroundColor: colors.background,
+        }}
       >
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
-            width: "100%",
-            marginVertical: 20,
-            paddingHorizontal: 20,
+            gap: 10,
           }}
         >
+          <Pressable onPress={() => router.canGoBack() && router.back()}>
+            <Ionicons  name="chevron-back" size={25} color={colors.text} />
+          </Pressable>
           <View
             style={{
               flexDirection: "row",
               alignItems: "center",
-              gap: 10,
+              gap: 12,
             }}
           >
-            <Pressable onPress={() => router.canGoBack() && router.back()}>
-              <Ionicons  name="chevron-back" size={25} color={colors.text} />
-            </Pressable>
-            <View
+            <CustomImageLoadder
+              source={{ uri: param.avatar }}
               style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 12,
+                width: 45,
+                height: 45,
+                borderRadius: 45,
+              }}
+              resizeMode="contain"
+            />
+          </View>
+          <View>
+            <CustomText
+              style={{
+                fontFamily: FONTS.bold,
+                fontSize: 18,
+                color: colors.text,
               }}
             >
-              <CustomImageLoadder
-                source={{ uri: param.avatar }}
-                style={{
-                  width: 45,
-                  height: 45,
-                  borderRadius: 45,
-                }}
-                resizeMode="contain"
-              />
-            </View>
-            <View>
-              <CustomText
-                style={{
-                  fontFamily: FONTS.bold,
-                  fontSize: 18,
-                  color: colors.text,
-                }}
-              >
-                {param.name}
-              </CustomText>
-              <CustomText
-                style={{
-                  fontFamily: FONTS.regular,
-                  color: colors.gray,
-                  fontSize: 14,
-                }}
-              >
-                {status ? "Online" : "Offline"}
-              </CustomText>
-            </View>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              gap: 20,
-            }}
-          >
-            <Pressable>
-              <Ionicons name="videocam" color={colors.primary} size={25} />
-            </Pressable>
-            <Pressable>
-              <Ionicons name="videocam" color={colors.primary} size={25} />
-            </Pressable>
+              {param.name}
+            </CustomText>
+            <CustomText
+              style={{
+                fontFamily: FONTS.regular,
+                color: colors.gray,
+                fontSize: 14,
+              }}
+            >
+              {status ? "Online" : "Offline"}
+            </CustomText>
           </View>
         </View>
         <View
           style={{
-            flex: 1,
-            backgroundColor: colors.lightGray,
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 20,
           }}
         >
-          <View style={{ flex: 1, marginHorizontal: 8 }}>
-            <Animated.FlatList
-              data={message}
-              ref={chatListRef}
-              onScroll={onScroll}
-              style={{ marginVertical: 4 }}
-              keyExtractor={keyExtractor}
-              renderItem={renderMessageList}
-              onEndReached={onBottomReached}
-              bounces={false}
-              inverted={true}
-              keyboardShouldPersistTaps="handled"
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ 
-                flexGrow: 1,
-                paddingBottom: 20
-              }}
-              ListFooterComponent={
-                loadingState.isLoadingBottom ? (
-                  <ActivityIndicator
-                    size={"small"}
-                    color={colors.primary}
-                    style={{ marginVertical: 10 }}
-                  />
-                ) : null
-              }
-              ListEmptyComponent={
-                message?.length === 0 && !loadingState.isChatListLoading ? (
-                  <Animated.View style={styles.emptyListView} entering={FadeIn}>
-                    <CustomText style={styles.emptyListText}>Start the Conversation</CustomText>
-                  </Animated.View>
-                ) : null
-              }
-            />
-            {scrollTodownEnable && (
-              <Pressable
-                hitSlop={15}
-                style={[styles.downView, { bottom: Keyboard.isVisible() ? "30%" : "17%" }]}
-                onPress={() => {
-                  if (chatListRef?.current) {
-                    chatListRef.current?.scrollToOffset({
-                      offset: -1,
-                      animated: true,
-                    });
-                  }
-                }}
-              >
-                <Ionicons name="chevron-down" size={15} color={colors.white} />
-              </Pressable>
-            )}
-          </View>
-            <ChatInput
-              inputRef={inputRef}
-              message={newMessage}
-              setMessage={setNewMessage}
-              replyMessage={replyMessage}
-              setReplyMessage={setReplyMessage}
-              sendMessage={handleSendMessage}
-              isLoading={loadingState.isSendMessageLoading}
-            />
+          <Pressable>
+            <Ionicons name="videocam" color={colors.primary} size={25} />
+          </Pressable>
+          <Pressable>
+          <Ionicons name="ellipsis-vertical" size={24} color={colors.primary} />
+          </Pressable>
         </View>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+      </View>
+      {/* Chat List and Input */}
+      <View style={{ flex: 1, backgroundColor: colors.lightGray }}>
+        <View style={{ flex: 1, marginHorizontal: 8 }}>
+          <Animated.FlatList
+            data={message}
+            ref={chatListRef}
+            onScroll={onScroll}
+            style={{ flex: 1, marginVertical: 4 }}
+            keyExtractor={keyExtractor}
+            renderItem={renderMessageList}
+            onEndReached={onBottomReached}
+            bounces={false}
+            inverted={true}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+              flexGrow: 1,
+              paddingBottom: 20,
+            }}
+            ListFooterComponent={
+              loadingState.isLoadingBottom ? (
+                <ActivityIndicator
+                  size={"small"}
+                  color={colors.primary}
+                  style={{ marginVertical: 10 }}
+                />
+              ) : null
+            }
+            ListEmptyComponent={
+              message?.length === 0 && !loadingState.isChatListLoading ? (
+                <Animated.View style={styles.emptyListView} entering={FadeIn}>
+                  <CustomText style={styles.emptyListText}>Start the Conversation</CustomText>
+                </Animated.View>
+              ) : null
+            }
+          />
+          {scrollTodownEnable && (
+            <Pressable
+              hitSlop={15}
+              style={[styles.downView, { bottom: Keyboard.isVisible() ? "30%" : "17%" }]}
+              onPress={() => {
+                if (chatListRef?.current) {
+                  chatListRef.current?.scrollToOffset({
+                    offset: -1,
+                    animated: true,
+                  });
+                }
+              }}
+            >
+              <Ionicons name="chevron-down" size={15} color={colors.white} />
+            </Pressable>
+          )}
+        </View>
+        {/* Only wrap the input in KeyboardAvoidingView */}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
+        >
+          <ChatInput
+            inputRef={inputRef}
+            message={newMessage}
+            setMessage={setNewMessage}
+            replyMessage={replyMessage}
+            setReplyMessage={setReplyMessage}
+            sendMessage={handleSendMessage}
+            isLoading={loadingState.isSendMessageLoading}
+          />
+        </KeyboardAvoidingView>
+      </View>
+    </View>
   );
 };
 
