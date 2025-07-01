@@ -101,7 +101,7 @@ const getStyles = () => {
       alignItems: "center",
       backgroundColor: colors.white,
       borderRadius: 10,
-      paddingVertical: 12,
+      height: 50,
       justifyContent: "center",
       shadowColor: colors.black,
       shadowOpacity: 0.05,
