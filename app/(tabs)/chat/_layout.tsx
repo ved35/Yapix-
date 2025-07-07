@@ -7,6 +7,7 @@ const ChatlLyout = () => {
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="chat-box" options={{ headerShown: false }} />
+      <Stack.Screen name="friend-request" options={{ headerShown: false }} />
     </Stack>
   );
 };

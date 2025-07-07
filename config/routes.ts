@@ -18,8 +18,9 @@ export const ROUTE = {
   //profile
   "profile.editProfile": "/profile/edit-profile",
   "profile.changePassword": "/profile/change-password",
+  "profile.qrCode": "/profile/qr-code",
 
   //chat
-
-  "chat.chatBox": "/chat/chat-box"
+  "chat.chatBox": "/chat/chat-box",
+  "chat.friendRequest": "/chat/friend-request",
 } as const satisfies Record<string, Route>;

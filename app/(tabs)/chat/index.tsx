@@ -1,40 +1,44 @@
 import CustomImageLoadder from "@/components/CustomImageLoadder";
-import CustomSearchBar from '@/components/CustomSearchBar';
+import CustomSearchBar from "@/components/CustomSearchBar";
 import CustomText from "@/components/CustomText";
 import { ROUTE } from "@/config/routes";
-import { contact } from "@/constants/localData";
 import { FONTS } from "@/constants/theme";
 import { useTheme } from "@/context/ThemeContext";
 import { useSocket } from "@/hooks/useSocket";
 import useAuthStore from "@/store/authStore";
+import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Pressable, StatusBar, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import Animated from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Chat() {
   const { colors } = useTheme();
   const styles = getStyles();
   const { t } = useTranslation();
+
+  const { top } = useSafeAreaInsets();
+
   const [search, setSearch] = useState("");
 
-  const user = useAuthStore(state => state.user)
+  const user = useAuthStore((state) => state.user);
 
-  const {connect, socket } = useSocket({
-    flag: "list", 
+  const { connect, socket, userList } = useSocket({
+    flag: "list",
     userId: user?.id || "",
-    manageGetMessagePage: { currentPage: 1 }
+    manageGetMessagePage: { currentPage: 1 },
   });
 
-  useEffect(()=>{
-    if(socket){
+  useEffect(() => {
+    if (socket) {
       connect();
     }
-  },[])
+  }, []);
 
   const handleContactItem = (item: any) => {
-    router.navigate({pathname: ROUTE["chat.chatBox"], params:item});
+    router.navigate({ pathname: ROUTE["chat.chatBox"], params: item });
   };
 
   const reanderContactItem = ({ item }: any) => {
@@ -42,7 +46,11 @@ export default function Chat() {
       <Pressable style={styles.contactItem} onPress={() => handleContactItem(item)}>
         <View style={styles.avatarContainer}>
           <CustomImageLoadder
-            source={{ uri: item.avatar }}
+            source={{
+              uri: item.avatar
+                ? item.avatar
+                : "https://cdn.pixabay.com/photo/2022/09/01/22/42/woman-7426320_1280.png",
+            }}
             style={styles.avatar}
             resizeMode="cover"
           />
@@ -65,49 +73,55 @@ export default function Chat() {
     );
   };
 
-  const keyExtractor = (item:any) => item.id.toString();
+  const keyExtractor = (item: any) => item.id.toString();
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={'dark-content'} backgroundColor={colors.white} />
-      <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
-        <View style={{alignItems: 'center', alignSelf: 'center', width:'100%'}}>
+    <View style={[styles.container, { paddingTop: top }]}>
+      {/* <StatusBar barStyle={'dark-content'} backgroundColor={colors.white} /> */}
+      <View style={{ flex: 1, width: "90%", alignSelf: "center" }}>
+        <View style={{ alignItems: "center", alignSelf: "center", width: "100%" }}>
           <CustomText style={styles.headerTitle}>Message</CustomText>
 
-          <CustomSearchBar 
-            value={search} 
-            onChangeText={setSearch} 
-            placeholder="Search contact" 
+          <CustomSearchBar
+            value={search}
+            onChangeText={setSearch}
+            placeholder="Search contact"
             containerStyle={{
               backgroundColor: colors.background,
               borderWidth: 1,
-              borderColor: colors.border
+              borderColor: colors.border,
             }}
           />
 
-          <Animated.FlatList 
-            data={contact}
+          <Animated.FlatList
+            data={userList}
             renderItem={reanderContactItem}
             keyExtractor={keyExtractor}
             style={styles.contactList}
             showsVerticalScrollIndicator={false}
             bounces={false}
             scrollEnabled
-            ItemSeparatorComponent={()=><View style={styles.itemSeperator} />}
+            ItemSeparatorComponent={() => <View style={styles.itemSeperator} />}
             removeClippedSubviews={true}
             maxToRenderPerBatch={10}
             initialNumToRender={10}
             updateCellsBatchingPeriod={100}
             windowSize={10}
-            getItemLayout={(data, index)=> ({
+            getItemLayout={(data, index) => ({
               length: 74,
-              offset: 74*index,
-              index
+              offset: 74 * index,
+              index,
             })}
-            ListFooterComponent={()=><View style={styles.listFooter} />}
+            ListFooterComponent={() => <View style={styles.listFooter} />}
           />
         </View>
       </View>
+      <Pressable
+        style={styles.addBtn}
+        onPress={()=>{router.push(ROUTE['chat.friendRequest'])}}
+      >
+        <Ionicons name='add' size={30} color={colors.white} />
+      </Pressable>
     </View>
   );
 }
@@ -116,10 +130,11 @@ const getStyles = () => {
   const { colors } = useTheme();
 
   return StyleSheet.create({
-    container:{
+    container: {
       flex: 1,
-      alignItems: 'center',
-      backgroundColor: colors.background
+      alignItems: "center",
+      backgroundColor: colors.background,
+      position: 'relative'
     },
     headerTitle: {
       fontSize: 18,
@@ -140,7 +155,7 @@ const getStyles = () => {
     contactList: {
       backgroundColor: colors.background,
       marginTop: 15,
-      width: '100%'
+      width: "100%",
     },
     contactItem: {
       flexDirection: "row",
@@ -193,5 +208,16 @@ const getStyles = () => {
       borderRadius: 20,
       backgroundColor: colors.primary,
     },
+    addBtn: {
+      height: 50,
+      width: 50,
+      borderRadius: 35,
+      position: 'absolute',
+      bottom: 110,
+      right: 20,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: colors.primary
+    }
   });
 };

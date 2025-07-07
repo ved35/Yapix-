@@ -224,3 +224,6 @@ export interface EditFormData {
   profile_picture: string;
   email: string;
 }
+ export interface friendRequestData {
+  receiver_id: string;
+ }

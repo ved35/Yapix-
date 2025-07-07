@@ -1,12 +1,13 @@
 export const apiConfig = {
   //live
   BASE_URL: "https://echomeet-3wyb.onrender.com",
+  IMAGE_URL: "https://echomeet-3wyb.onrender.com/",
   SOCKET_URL: "https://echomeet-3wyb.onrender.com",
   LIVE_URL: "https://api.example.com",
 
   //local
-  // BASE_URL: "http://192.168.18.252:5000",
-  // SOCKET_URL: "http://192.168.18.252:5000/",
+  // BASE_URL: "http://192.168.31.162:5000",
+  // SOCKET_URL: "http://192.168.31.162:5000/",
 
   // Request configuration
   TIMEOUT: 20000,
@@ -27,6 +28,12 @@ export const apiConfig = {
       PROFILE: "/profile/editProfile",
       CHANGE_PASSWORD: "/profile/changePassword",
     },
+    FRIEND: {
+      SEARCHFRIEND: "/messages/search",
+      FRIEND_REQUEST: "/messages/friendRequest",
+      FRIEND_RESPOND_TO_REQUEST: "/messages/friendRespondToRequest",
+      FRIEND_REQUESTLIST: "/messages/friendRequestList",
+    }
   },
 
   // Headers

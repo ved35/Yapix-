@@ -132,7 +132,7 @@ export default function Profile() {
         break;
       case 3: // QR Code
         console.log("Navigate to QR Code");
-        // router.push("/qr-code");
+        router.push(ROUTE['profile.qrCode']);
         break;
       case 4: // Notification
         // Toggle notification settings

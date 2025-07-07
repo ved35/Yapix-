@@ -3,12 +3,13 @@ import { CustomTabBarProps, ThemeContextType } from "@/interface/type";
 import { Ionicons } from "@expo/vector-icons";
 import React, { JSX } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CustomText from "./CustomText";
 
 const CustomTabBar: React.FC<CustomTabBarProps> = ({ state, descriptors, navigation }) => {
   const { colors } = useTheme();
   const styles = getStyles(colors);
-
+  const { bottom } = useSafeAreaInsets();
   const getTabIcon = (routeName: string, focused: boolean): JSX.Element => {
     const iconColor = focused ? colors.text : colors.textSecondary;
     const iconSize = 24;
@@ -39,8 +40,8 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({ state, descriptors, navigat
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.tabContainer}>
+    <View style={[styles.container]}>
+      <View style={[styles.tabContainer,{paddingBottom: bottom}]}>
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
           const label = getTabLabel(route.name);

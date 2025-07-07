@@ -55,6 +55,7 @@
     "title": "Profile",
     "editProfile": "Edit Profile",
     "changePassword": "Change Password",
+    "qrCode": "QR Code",
     "currentPassword": "Current Password",
     "enterCurrentPassword": "Enter Current Password",
     "newPassword": "New Password",

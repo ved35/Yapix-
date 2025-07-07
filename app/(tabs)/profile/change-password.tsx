@@ -9,10 +9,12 @@ import { router } from "expo-router";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ZodError } from "zod";
 
 const ChangePassword = () => {
   const styles = style();
+  const { top } = useSafeAreaInsets();
   const { t } = useTranslation();
   const changePasswordMutation = useChangePasswordMutation();
 
@@ -63,7 +65,7 @@ const ChangePassword = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{paddingTop: top}]}>
       <View style={styles.contentContainer}>
         <CustomHeader title={t("profile.changePassword")} />
         <View style={{ flex: 1, marginTop: 30 }}>

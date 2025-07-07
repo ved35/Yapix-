@@ -33,7 +33,7 @@ export const useSocket = ({
     (newSocket: Socket) => {
       if (flag === "list") {
         newSocket.on("receiver-user-list", (res: any) => {
-          console.log("res:",JSON.stringify(res))
+          console.log("res-:",JSON.stringify(res))
           const data = res?.data;
           if (data) {
             setUserList(data || []);
@@ -59,6 +59,7 @@ export const useSocket = ({
           }
         });
         newSocket.on("receive-message", (data) => {
+          console.log("data:",data)
           if (data) {
             setChatId && setChatId(data?.data?.chatId || "");
             setMessage && setMessage((prev) => [data?.data, ...prev]);
@@ -110,7 +111,7 @@ export const useSocket = ({
         transports: ["websocket"],
         auth: { token },
       });
-
+      console.log("newSocket",newSocket)
       newSocket.on("connect", () => {
 
         console.log("socket connection successfull", newSocket.id)

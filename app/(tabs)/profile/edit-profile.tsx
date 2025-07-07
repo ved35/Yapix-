@@ -10,10 +10,12 @@ import { editProfileSchema } from "@/validation/auth.schema";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import { Image, Pressable, StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ZodError } from "zod";
 
 const EditProfile = () => {
   const styles = style();
+  const { top } = useSafeAreaInsets();
 
   const editProfileMutation = useEditPrfileMutation();
 
@@ -71,7 +73,7 @@ const EditProfile = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{paddingTop: top}]}>
       <View style={styles.contentContainer}>
         <CustomHeader title="Edit Profile" />
         <View style={styles.profilePicContainer}>

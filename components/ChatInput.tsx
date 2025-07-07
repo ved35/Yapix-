@@ -13,6 +13,7 @@ import {
   View
 } from "react-native";
 import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CustomImageLoadder from "./CustomImageLoadder";
 import CustomText from "./CustomText";
 
@@ -51,9 +52,10 @@ const ChatInput = ({
   const styles = Style();
   const { colors } = useTheme();
   const { t } = useTranslation();
+  const { bottom } = useSafeAreaInsets();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{paddingBottom: bottom}]}>
       <View style={styles.main}>
         {(replyMessage.message || replyMessage?.image?.uri) && (
           <Animated.View
@@ -134,8 +136,8 @@ const ChatInput = ({
               <ActivityIndicator size={"small"} color={colors.primary} />
             </View>
           ) : (
-            <Pressable disabled={isLoading} onPress={() => setMessage(message)}>
-              <Ionicons name="send-outline" color={colors.primary} size={22} />
+            <Pressable  onPress={() =>{sendMessage(message); setMessage(message)}}>
+              <Ionicons name="send-outline" color={colors.white} size={22} />
             </Pressable>
           )}
         </View>
@@ -156,7 +158,6 @@ const Style = () => {
       paddingHorizontal: 10,
       justifyContent: "center",
       paddingBottom: isAndroid ? 10 : 20,
-      backgroundColor: colors.background,
     },
     main: {
       width: "100%",
@@ -170,10 +171,12 @@ const Style = () => {
       paddingVertical: 5,
     },
     bottomView: {
-      paddingHorizontal: 10,
       alignItems: "center",
       justifyContent: "center",
-      minWidth: 50,
+      width: 50,
+      height: 50,
+      borderRadius: 25,
+      backgroundColor: colors.primary,
     },
     messageIconView: {
       width: 40,
@@ -193,23 +196,18 @@ const Style = () => {
     },
     textInputView: {
       flex: 1,
-      paddingHorizontal: 10,
+      paddingRight: 10,
     },
     textInput: {
       fontFamily: FONTS.medium,
       fontSize: 16,
       color: colors.text,
       paddingVertical: 10,
-      paddingHorizontal: 5,
+      paddingHorizontal: 25,
       minHeight: 40,
       maxHeight: 100,
-    },
-    sendBTN: {
-      width: 43,
-      height: 44,
-      borderRadius: 7,
-      alignItems: "center",
-      justifyContent: "center",
+      height: 50,
+      borderRadius: 25,
       backgroundColor: colors.background,
     },
     replyMessageContainer: {

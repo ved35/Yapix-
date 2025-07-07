@@ -39,7 +39,6 @@ const getStyles = (colors: ThemeContextType["colors"]) => {
     backButton: {
       height: 40,
       width: 40,
-      marginLeft: 10,
       padding: 8,
       backgroundColor: colors.surface,
       borderRadius: 40,

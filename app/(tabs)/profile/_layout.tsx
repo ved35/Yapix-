@@ -8,6 +8,7 @@ const ProfilelLyout = () => {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="edit-profile" options={{ headerShown: false }} />
       <Stack.Screen name="change-password" options={{ headerShown: false }} />
+      <Stack.Screen name="qr-code" options={{ headerShown: false }} />
     </Stack>
   );
 };
